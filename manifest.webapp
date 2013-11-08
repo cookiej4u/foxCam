@@ -1,0 +1,57 @@
+{
+  "version": "0",
+  "name": "foxCam",
+  "type": "privileged",
+  "launch_path": "/index.html",
+  "description": "foxCam alpha 0",
+  "orientation": [
+    "portrait"
+  ],
+  "icons": {
+    "60": "/images/icon_template.png"
+  },
+  "developer": {
+    "name": "foxCam Dev. Team, 2nd, North 1,fxca."
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {
+    "desktop-notification": {
+      "description": "Show notifications if needed"
+    },
+    "device-storage:pictures": {
+      "description": "Save pictures",
+      "access": "readwrite"
+    },
+    "device-storage:sdcard": {
+      "description": "Save to SDcard",
+      "access": "readwrite"
+    }
+  },
+  "activities": {
+    "open": {
+      "filters": {
+        "type": [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "image/bmp"
+        ]
+      },
+      "disposition": "inline",
+      "returnValue": true
+    },
+    "pick": {
+      "filters": {
+        "type": [
+          "image/*",
+          "image/jpeg"
+        ]
+      },
+      "disposition": "inline",
+      "returnValue": true
+    }
+  }
+}
