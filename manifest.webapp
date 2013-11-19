@@ -1,7 +1,7 @@
 {
   "version": "0",
   "name": "foxCam",
-  "type": "certified",
+  "type": "privileged",
   "launch_path": "/index.html",
   "description": "foxCam alpha 0",
   "orientation": [
