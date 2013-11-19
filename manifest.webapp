@@ -1,7 +1,7 @@
 {
   "version": "0",
   "name": "foxCam",
-  "type": "privileged",
+  "type": "certified",
   "launch_path": "/index.html",
   "description": "foxCam alpha 0",
   "orientation": [
@@ -28,7 +28,8 @@
     "device-storage:sdcard": {
       "description": "Save to SDcard",
       "access": "readwrite"
-    }
+    },
+    "camera": {}
   },
   "activities": {
     "open": {
