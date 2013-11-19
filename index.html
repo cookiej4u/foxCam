@@ -4,11 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>foxCam</title>
+    <link rel="stylesheet" type="text/css" href="css/brick-0.9.1.byob.min.css"/>
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-  <p>Hello, world2.</p>
-  <button id="myButton">Click here!</button>
-  <script type="text/javascript" src="js/foxcam.js"></script>
-  <input type="file" accept="image/*;capture=camera">
+  <x-appbar>
+    <div>Back</div>
+    <header>
+      <i class="fa fa-undo"></i>
+      <i class="fa fa-repeat"></i>
+    </header>
+    <div>Compare</div>
+  </x-appbar>
+  <canvas></canvas>
+  <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
 </body>
 </html>
