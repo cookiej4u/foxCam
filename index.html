@@ -1,1 +1,45 @@
-Hello, world.
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>foxCam</title>
+    <link rel="stylesheet" href="css/central.css" type="text/css"/>
+</head>
+<body>
+  <x-appbar>
+    <div>
+      <i class="fa fa-chevron-left"></i>
+    </div>
+    <header>
+      <i class="fa fa-undo"></i>
+      <i class="fa fa-repeat"></i>
+    </header>
+    <div>
+      <i class="fa fa-star"></i>
+    </div>
+  </x-appbar>
+  <x-deck>
+      <x-card>
+	      <!--預設不是應該這一頁是首頁？但沒有東西跑出來-->
+          0<span>I'm the first card!</span>
+      </x-card>
+      <x-card>
+          1<span>These cards can contain any markup!</span>
+      </x-card>
+      <x-card>
+          2
+      </x-card>
+  </x-deck>
+  
+  <canvas></canvas>
+  <div id="slider">
+  <x-slider min="-100" max="100" step="5" value="0"></x-slider>
+  </div>
+  
+  <div id="footer">
+	
+  </div>
+  <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
+</body>
+</html>

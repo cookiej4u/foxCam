@@ -1,0 +1,20 @@
+/* import framework core */
+@import url("../yaml/core/base.min.css");
+@import url("brick-0.9.1.byob.min.css");
+@import url("../fonts/font-awesome/css/font-awesome.min.css");
+
+#appbar{
+	background:rgba(0,0,0,100);
+}
+
+#footer {
+	position:absolute;
+	width:100%;
+	bottom:0%;
+}
+
+#slider {
+	position:absolute;
+	right:-50px;
+	transform:rotate(90deg);	
+}
