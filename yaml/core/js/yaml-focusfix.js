@@ -67,4 +67,3 @@
 		}
 	};
 	YAML_focusFix.init();
-})();
