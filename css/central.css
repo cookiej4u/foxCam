@@ -3,10 +3,12 @@
 @import url("brick-0.9.1.byob.min.css");
 @import url("../fonts/font-awesome/css/font-awesome.min.css");
 
-<<<<<<< HEAD
-/*navigator and toolbar on Edit page*/
-@import url("editPage.css");
-=======
+body, html{
+	overflow: hidden;
+}
+ul li.page-toogler{
+
+}
 #appbar{
 	background:rgba(0,0,0,100);
 }
@@ -22,4 +24,15 @@
 	right:-50px;
 	transform:rotate(90deg);	
 }
->>>>>>> 78677db7d70f0f0c9f13806bb5dd50c38f6fbd37
+div.page{
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width:100%;
+  height: 80%;
+  background: red;
+}
+div#edit-screen{
+	left:100%;
+	background: green;
+}
