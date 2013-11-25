@@ -1,0 +1,7 @@
+/* import framework core */
+@import url("../yaml/core/base.min.css");
+@import url("brick-0.9.1.byob.min.css");
+@import url("../fonts/font-awesome/css/font-awesome.min.css");
+
+/*navigator and toolbar on Edit page*/
+@import url("editPage.css");

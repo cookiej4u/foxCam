@@ -4,19 +4,78 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>foxCam</title>
-    <link rel="stylesheet" type="text/css" href="css/brick-0.9.1.byob.min.css"/>
-    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/central.css" type="text/css"/>
 </head>
 <body>
-  <x-appbar>
-    <div>Back</div>
+  <x-appbar id="navigator">
+    <div id="back">
+      <a>
+        <i class="fa fa-arrow-left button-fig"></i>
+      </a>
+    </div>
     <header>
-      <i class="fa fa-undo"></i>
-      <i class="fa fa-repeat"></i>
+      <li>
+        <a>
+          <i class="fa fa-reply button-fig"></i>
+        </a>
+      </li>
+      <li>
+        <a>
+          <i class="fa fa-share button-fig"></i>
+        </a>
+      </li>
     </header>
-    <div>Compare</div>
+    <div id="compare">
+      <a>
+        <i class="fa fa-star button-fig"></i>
+        <span class="button-title">Compare</span>
+      </a>
+    </div>
   </x-appbar>
-  <canvas></canvas>
+
+  <x-deck>
+    <canvas>
+    </canvas>
+  </x-deck>
+
+  <ul class="footer">
+    <li>
+      <a>
+        <i class="fa fa-crop button-fig"></i>
+        <span class="button-title">Crop</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <i class="fa fa-repeat button-fig"></i>
+        <span class="button-title">Rotate</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <i class="fa fa-cloud button-fig"></i>
+        <span class="button-title">Color</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <i class="fa fa-magic button-fig"></i>
+        <span class="button-title">Effect</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <i class="fa fa-credit-card button-fig"></i>
+        <span class="button-title">Frame</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <i class="fa fa-heart button-fig"></i>
+        <span class="button-title">Stamps</span>
+      </a>
+    </li>
+  </ul>
   <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
 </body>
 </html>
