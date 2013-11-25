@@ -3,5 +3,23 @@
 @import url("brick-0.9.1.byob.min.css");
 @import url("../fonts/font-awesome/css/font-awesome.min.css");
 
+<<<<<<< HEAD
 /*navigator and toolbar on Edit page*/
 @import url("editPage.css");
+=======
+#appbar{
+	background:rgba(0,0,0,100);
+}
+
+#footer {
+	position:absolute;
+	width:100%;
+	bottom:0%;
+}
+
+#slider {
+	position:absolute;
+	right:-50px;
+	transform:rotate(90deg);	
+}
+>>>>>>> 78677db7d70f0f0c9f13806bb5dd50c38f6fbd37
