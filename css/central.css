@@ -17,21 +17,6 @@ header{
 	text-align:center;
 }
 
-.font{
-	font-size:1.5em;
-	margin-top:10px;
-}
-
-#appbar{
-	background:rgba(0,0,0,100);
-	height:10%;
-}
-
-#slider {
-	position:absolute;
-	right:-50px;
-	transform:rotate(90deg);	
-}
 div.page{
   position: absolute;
   top: 10%;
@@ -39,6 +24,14 @@ div.page{
   width:100%;
   height: 80%;
   background: red;
+}
+
+div.footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  margin: 0px 0px;
+  padding: 0px;
 }
 
 div#edit-screen{
@@ -77,13 +70,30 @@ div#setting-screen{
 div#back, div#compare {
   width: 2em;
 }
-ul.edit-footer {
+div#intro-footer{
   width: 100%;
   position: absolute;
   bottom: 0px;
   background-color: rgb(0,0,0);
   margin: 0px 0px;
   padding: 0px;
+  left:0;
+}
+div#edit-footer {
+  background-color: black;
+  left:100%;
+}
+div#camera-footer {
+  background-color: purple;
+  left:200%;
+}
+div#collage-footer {
+  background-color: pink;
+  left:300%;
+}
+div#setting-footer {
+  background-color: green;
+  left:400%;
 }
 li {
   display: inline-block;
