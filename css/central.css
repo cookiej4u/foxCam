@@ -5,18 +5,28 @@
 
 body, html{
 	overflow: hidden;
+	background:rgba(0,0,0,100);
 }
 ul li.page-toogler{
 
 }
+
+.font{
+	font-size:1.5em;
+	margin-top:10px;
+}
+
 #appbar{
 	background:rgba(0,0,0,100);
+	height:10%;
 }
 
 #footer {
 	position:absolute;
 	width:100%;
 	bottom:0%;
+	background-color:rgba(0,0,0,100);
+	height:10%
 }
 
 #slider {
@@ -32,7 +42,31 @@ div.page{
   height: 80%;
   background: red;
 }
+
 div#edit-screen{
 	left:100%;
 	background: green;
+	transition-property:left;
+	transition-duration:2s;
+}
+
+div#camera-screen{
+	left:200%;
+	background: blue;
+	transition-property:left;
+	transition-duration:2s;
+}
+
+div#collage-screen{
+	left:300%;
+	background: yellow;
+	transition-property:left;
+	transition-duration:2s;
+}
+
+div#setting-screen{
+	left:400%;
+	background: white;
+	transition-property:left;
+	transition-duration:2s;
 }
