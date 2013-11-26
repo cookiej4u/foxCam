@@ -1,9 +1,4 @@
 /* http://mozilla.github.io/brick/download.html?byob=x-tag-appbar,x-tag-deck,x-tag-flipbox,x-tag-slider,x-tag-tabbar,x-tag-tooltip */ x-appbar{padding:0;width:100%;display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-<<<<<<< HEAD
-x-appbar > *{position:relative;display:inline-block;border:none;padding:2px 5px 0;vertical-align:middle;text-align:center;background:none}
-=======
-x-appbar > *{height:10%;position:relative;display:inline-block;border:none;padding:2px 5px 0;vertical-align:middle;text-align:center;background:none}
->>>>>>> 639de94dfe0b7c566631da404f9f03ec998e36d1
 x-appbar > *:first-child:before{display:none}
 x-appbar > header{min-width:auto;min-height:auto;-webkit-box-flex:1;-moz-box-flex:1;-webkit-flex:1;-ms-flex:1;box-flex:1;flex:1;overflow:hidden;text-overflow:ellipsis}
 x-appbar > header:after{content:attr(subheading)}
