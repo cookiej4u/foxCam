@@ -1,10 +1,9 @@
 /*Style the main screen*/
 div#intro-screen {
   background-image: url(../images/intro-bg.svg);
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 0%, -10%;
 }
 .page-toggler {
   position: absolute;
@@ -13,6 +12,7 @@ div#intro-screen {
   height: 19.27%;
   background-repeat: no-repeat;
   background-size: 100%;
+  background-position: center;
 }
 .page-toggler>a {
   display: table-cell;
