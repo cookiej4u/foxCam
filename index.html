@@ -8,7 +8,8 @@
 </head>
 <body>
   <x-appbar id="appbar">
-	<div>
+<!--This part is omitted to be merged
+    <div>
       <i class="fa fa-chevron-left font"></i>
     </div>
     <header>
@@ -18,27 +19,28 @@
     <div>
       <i class="fa fa-star font"></i>
     </div>
+-->
   </x-appbar>
   <div>
     <div id="intro-screen" class="page">
       <ul>
-        <li class="page-toogler" data-page-no="1"><a href="#edit">1</a></li>
-        <li class="page-toogler" data-page-no="2"><a href="#camera">2</a></li>
-        <li class="page-toogler" data-page-no="3"><a href="#collage">3</a></li>
-        <li class="page-toogler" data-page-no="4"><a href="#setting">4</a></li>
+        <li class="page-toggler" id="camera" data-page-no="1"><a>Camera</a></li>
+        <li class="page-toggler" id="edit" data-page-no="2"><a>Edit</a></li>
+        <li class="page-toggler" id="collage" data-page-no="3"><a>Collage</a></li>
+        <li class="page-toggler" id="setting" data-page-no="4"><a>Setting</a></li>
       </ul>
     </div>
-    <div id="edit-screen" class="page" data-page-no="1">
-      edit page
-    </div>
-
-	<div id="camera-screen" class="page" data-page-no="2">
+    <div id="camera-screen" class="page" data-page-no="1">
       camera page
     </div>
-	<div id="collage-screen" class="page" data-page-no="3">
+
+    <div id="edit-screen" class="page" data-page-no="2">
+      edit page
+    </div>
+    <div id="collage-screen" class="page" data-page-no="3">
       collage page
     </div>
-	<div id="setting-screen" class="page" data-page-no="4">
+    <div id="setting-screen" class="page" data-page-no="4">
       setting page
     </div>
   </div>    

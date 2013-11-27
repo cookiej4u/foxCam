@@ -3,36 +3,39 @@
 @import url("brick-0.9.1.byob.min.css");
 @import url("../fonts/font-awesome/css/font-awesome.min.css");
 
+/*import main page stylesheet*/
+@import url('pageIntro.css');
+
 body, html{
-	overflow: hidden;
-	background:rgba(0,0,0,100);
+    overflow: hidden;
+    background:rgba(0,0,0,100);
 }
 ul li.page-toogler{
 
 }
 
 .font{
-	font-size:1.5em;
-	margin-top:10px;
+    font-size:1.5em;
+    margin-top:10px;
 }
 
 #appbar{
-	background:rgba(0,0,0,100);
-	height:10%;
+    background:rgba(0,0,0,100);
+    height:10%;
 }
 
 #footer {
-	position:absolute;
-	width:100%;
-	bottom:0%;
-	background-color:rgba(0,0,0,100);
-	height:10%
+    position:absolute;
+    width:100%;
+    bottom:0%;
+    background-color:rgba(0,0,0,100);
+    height:10%
 }
 
 #slider {
-	position:absolute;
-	right:-50px;
-	transform:rotate(90deg);	
+    position:absolute;
+    right:-50px;
+    transform:rotate(90deg);    
 }
 div.page{
   position: absolute;
@@ -44,29 +47,29 @@ div.page{
 }
 
 div#edit-screen{
-	left:100%;
-	background: green;
-	transition-property:left;
-	transition-duration:.5s;
+    left:100%;
+    background: green;
+    transition-property:left;
+    transition-duration:.5s;
 }
 
 div#camera-screen{
-	left:200%;
-	background: blue;
-	transition-property:left;
-	transition-duration:.5s;
+    left:200%;
+    background: blue;
+    transition-property:left;
+    transition-duration:.5s;
 }
 
 div#collage-screen{
-	left:300%;
-	background: yellow;
-	transition-property:left;
-	transition-duration:.5s;
+    left:300%;
+    background: yellow;
+    transition-property:left;
+    transition-duration:.5s;
 }
 
 div#setting-screen{
-	left:400%;
-	background: white;
-	transition-property:left;
-	transition-duration:.5s;
+    left:400%;
+    background: white;
+    transition-property:left;
+    transition-duration:.5s;
 }
