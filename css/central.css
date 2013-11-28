@@ -47,26 +47,26 @@ div#edit-screen{
 	left:100%;
 	background: green;
 	transition-property:left;
-	transition-duration:2s;
+	transition-duration:.5s;
 }
 
 div#camera-screen{
 	left:200%;
 	background: blue;
 	transition-property:left;
-	transition-duration:2s;
+	transition-duration:.5s;
 }
 
 div#collage-screen{
 	left:300%;
 	background: yellow;
 	transition-property:left;
-	transition-duration:2s;
+	transition-duration:.5s;
 }
 
 div#setting-screen{
 	left:400%;
 	background: white;
 	transition-property:left;
-	transition-duration:2s;
+	transition-duration:.5s;
 }
