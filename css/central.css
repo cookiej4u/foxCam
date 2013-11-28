@@ -2,6 +2,8 @@
 @import url("../yaml/core/base.min.css");
 @import url("brick-0.9.1.byob.min.css");
 @import url("../fonts/font-awesome/css/font-awesome.min.css");
+/*navigator and toolbar on Edit page*/
+@import url("editPage.css");
 
 body, html{
 	overflow: hidden;
@@ -11,29 +13,10 @@ ul li.page-toogler{
 
 }
 
-.font{
-	font-size:1.5em;
-	margin-top:10px;
+header{
+	text-align:center;
 }
 
-#appbar{
-	background:rgba(0,0,0,100);
-	height:10%;
-}
-
-#footer {
-	position:absolute;
-	width:100%;
-	bottom:0%;
-	background-color:rgba(0,0,0,100);
-	height:10%
-}
-
-#slider {
-	position:absolute;
-	right:-50px;
-	transform:rotate(90deg);	
-}
 div.page{
   position: absolute;
   top: 10%;
@@ -43,9 +26,17 @@ div.page{
   background: red;
 }
 
+div.footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  margin: 0px 0px;
+  padding: 0px;
+}
+
 div#edit-screen{
 	left:100%;
-	background: green;
+	background: black;
 	transition-property:left;
 	transition-duration:.5s;
 }
@@ -69,4 +60,68 @@ div#setting-screen{
 	background: white;
 	transition-property:left;
 	transition-duration:.5s;
+}
+
+/*navigator and toolbar on Edit page*/
+#navigator {
+  background-color: rgb(0,0,0);
+  background-image: none;
+}
+div#back, div#compare {
+  width: 2em;
+}
+div#intro-footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  background-color: rgb(0,0,0);
+  margin: 0px 0px;
+  padding: 0px;
+  left:0;
+}
+div#edit-footer {
+  background-color: black;
+  left:100%;
+}
+div#camera-footer {
+  background-color: purple;
+  left:200%;
+}
+div#collage-footer {
+  background-color: pink;
+  left:300%;
+}
+div#setting-footer {
+  background-color: green;
+  left:400%;
+}
+li {
+  display: inline-block;
+  width: 35px;
+  height: 40px;
+}
+li:hover, li:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
+  opacity: 0.6;
+}
+a {
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+i.button-fig {
+  color: rgb(128,128,128);
+}
+span.button-title {
+  font-family: "Berlin Sans FB Demi";
+  font-size: 0.4em;
+  color: rgb(255,255,255);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0px auto;
 }
