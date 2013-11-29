@@ -44,4 +44,6 @@ span.button-title {
   transform: translate(-50%, -50%);
   margin: 0px auto;
 }
-
+i#choose-image{
+  color: #eee;
+}
