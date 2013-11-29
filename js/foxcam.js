@@ -37,5 +37,16 @@ document.addEventListener('DOMComponentsLoaded', function(){
                     type: ["image/png", "image/jpg", "image/jpeg"]
                 }
         });
+        pick.onsuccess = function () { 
+                var img = new Image;
+                img.src = URL.createObjectURL(this.result.blob);
+                img.onload = function() {
+                    //alert('the image is drawn');
+                }
+            };
+
+            pick.onerror = function () {
+                
+            };
 	});
 })();

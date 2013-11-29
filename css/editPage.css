@@ -73,5 +73,6 @@ canvas#image-canvas{
   z-index: 2;
   position: absolute;
   background: #000000;
+  overflow:scroll;
   display: none;
 }
