@@ -27,4 +27,13 @@ document.addEventListener('DOMComponentsLoaded', function(){
 		$("#collage-footer").css('left','300%');
 		$("#setting-footer").css('left','400%');
 	});
+	$("i#choose-image").click(function(e){
+		e.preventDefault();
+		var pick = new MozActivity({
+                name: "pick",
+                data: {
+                    type: ["image/png", "image/jpg", "image/jpeg"]
+                }
+        });
+	});
 })();
