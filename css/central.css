@@ -66,6 +66,7 @@ div#setting-screen{
 #navigator {
   background-color: rgb(0,0,0);
   background-image: none;
+  visibility:hidden;
 }
 div#back, div#compare {
   width: 2em;
@@ -99,6 +100,12 @@ li {
   display: inline-block;
   width: 35px;
   height: 40px;
+}
+#back{
+	padding-left:10px;
+}
+#compare{
+	padding-right:10px;
 }
 li:hover, li:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
   opacity: 0.6;
