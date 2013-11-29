@@ -17,3 +17,17 @@ document.addEventListener('DOMComponentsLoaded', function(){
 		});
 	});
 })();
+
+(function () {
+	$(".fa-arrow-left").click(function(e){
+		e.preventDefault();
+		$("#edit-screen").css('left','100%');
+		$("#camera-screen").css('left','200%');
+		$("#collage-screen").css('left','300%');
+		$("#setting-screen").css('left','400%');
+		$("#edit-footer").css('left','100%');
+		$("#camera-footer").css('left','200%');
+		$("#collage-footer").css('left','300%');
+		$("#setting-footer").css('left','400%');
+	});
+})();
