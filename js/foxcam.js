@@ -5,6 +5,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
 (function () {
 	$("li.page-toogler").click(function(e){
 		e.preventDefault();
+		$("#navigator").css('visibility','visible');
 		var target = $(this).attr('data-page-no');
 		var target = $(this).attr('footer-page-no');
 		$("div.page").each(function( index ) {
@@ -16,11 +17,9 @@ document.addEventListener('DOMComponentsLoaded', function(){
 				$(this).css('left','0');
 		});
 	});
-})();
-
-(function () {
 	$(".fa-arrow-left").click(function(e){
 		e.preventDefault();
+		$("#navigator").css('visibility','hidden');
 		$("#edit-screen").css('left','100%');
 		$("#camera-screen").css('left','200%');
 		$("#collage-screen").css('left','300%');
