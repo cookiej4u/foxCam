@@ -31,6 +31,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
 	});
 	$("i#choose-image").click(function(e){
 		e.preventDefault();
+		var canvas = document.getElementById("image-canvas");
+        var context = canvas.getContext("2d");
 		var pick = new MozActivity({
                 name: "pick",
                 data: {
@@ -41,8 +43,19 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 var img = new Image;
                 img.src = URL.createObjectURL(this.result.blob);
                 img.onload = function() {
-                    //alert('the image is drawn');
+                    scale_ratio_h = canvas.height/img.height;
+                    scale_ratio_w = canvas.width/img.width;
+                    alert(scale_ratio_h + " " + scale_ratio_w);
+                    if(img.height > img.width){
+                    	context.drawImage(img,0,0, Math.ceil(canvas.width*(img.width/img.height)),canvas.height);
+                    }else{
+                    	context.drawImage(img,0,0, canvas.width, Math.ceil(canvas.height*(img.height/img.width)));
+                    }
+                    //alert(canvas.width/img.width);
+                    //var previewHeight = img.height*(canvas.width/img.width);
+                    //context.drawImage(img,0,0);
                 }
+                $("#image-canvas").css('display','block');
             };
 
             pick.onerror = function () {
