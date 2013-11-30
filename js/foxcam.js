@@ -48,9 +48,10 @@ document.addEventListener('DOMComponentsLoaded', function(){
                     alert(scale_ratio_h + " " + scale_ratio_w);
                     if(img.height > img.width){
                     	context.drawImage(img,0,0, Math.ceil(canvas.width*(img.width/img.height)),canvas.height);
-                    }else{
+                    }else if (img.height < img.width){
                     	context.drawImage(img,0,0, canvas.width, Math.ceil(canvas.height*(img.height/img.width)));
-                    }
+                    }else
+                    	context.drawImage(img,0,0, canvas.width, canvas.width);
                     //alert(canvas.width/img.width);
                     //var previewHeight = img.height*(canvas.width/img.width);
                     //context.drawImage(img,0,0);
