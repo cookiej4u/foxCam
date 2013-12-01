@@ -7,7 +7,10 @@ document.addEventListener('DOMComponentsLoaded', function(){
     var img_height = 0;
     var high_res_canvas = document.createElement('canvas');
     high_res_canvas.id = "high-canvas";
+    var rotating = false;
     var bufferImage;
+    var cw;
+    var ch;
     $("li.page-toggler").click(function(e){
         e.preventDefault();
         $("#navigator").css('visibility','visible');
@@ -73,6 +76,17 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 div.appendChild(canvas);
                 var context = canvas.getContext("2d");
                 context.drawImage(img,0,0, canvas.width, canvas.height);
+                var context2 = high_res_canvas.getContext("2d");
+                context2.drawImage(img,0,0, img.width, img.height);
+                var bufferImage2 = new Image;
+                bufferImage2.src = high_res_canvas.toDataURL();
+                bufferImage2.onload = function(){
+                    high_res_canvas.width = img_width;
+                    high_res_canvas.height = img_height;
+                    alert(high_res_canvas.width + "------"+high_res_canvas.height);
+                }
+                cw = canvas.width;
+                ch = canvas.height;
                 $("#image-canvas-wrapper").css('display','block');
             }
         }
@@ -80,18 +94,42 @@ document.addEventListener('DOMComponentsLoaded', function(){
     $("#compare").click(function(e){
         var canvas = document.getElementById('preview-canvas');
         if($('#preview-canvas').length != 0){
-            if(canvas.height > canvas.width){
+            //if(canvas.height > canvas.width){
                 var rotate_width = $("#image-canvas-wrapper").width();
                 var rotate_height = Math.ceil(img_width*rotate_width/img_height);
-                alert(rotate_width + "--"+rotate_height);
-                myRotate(canvas, rotate_height, rotate_width);
-            }
+                //alert(rotate_width + "--"+rotate_height);
+                myRotate(canvas);
+            //}
         }
         else
             alert("fuck you");
     });
-    function myRotate(canvas, cw, ch){
+    function myRotate(canvas){
         var context = canvas.getContext("2d",ch,cw);
+        var context2 = high_res_canvas.getContext("2d");
+        if (!rotating) {
+            rotating = true;            
+            // store current data to an image
+            myImage = new Image();
+            myImage.src = canvas.toDataURL();
+            myImage.onload = function () {
+                canvas.width = ch;
+                canvas.height = cw;
+                cw = canvas.width;
+                ch = canvas.height;
+                context.save();
+                context.translate(cw, ch / cw);
+                context.rotate(Math.PI / 2);
+                context.drawImage(myImage, 0, 0, cw, ch);               
+                context.restore();
+               
+                // clear the temporary image
+                myImage = null;
+               
+                rotating = false;               
+            }
+        }
+        /*var context = canvas.getContext("2d",ch,cw);
         canvas.width = ch;
         canvas.height = cw;
         cw = canvas.width;
@@ -99,7 +137,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
         context.save();
         context.translate(cw, ch / cw);
         context.rotate(Math.PI / 2);
-        context.drawImage(bufferImage, 0, 0, canvas.height,canvas.width);/*wtf!!!!*/           
-        context.restore();
+        context.drawImage(bufferImage, 0, 0, canvas.height,canvas.width);        
+        context.restore();*/
+
     }
 })();
