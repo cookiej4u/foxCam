@@ -10,6 +10,37 @@
 @import url('pageIntro.css');
 
 body, html{
+    overflow: hidden;
+    background:rgba(0,0,0,100);
+}
+ul li.page-toogler{
+
+}
+header{
+    text-align:center;
+}
+.font{
+    font-size:1.5em;
+    margin-top:10px;
+}
+
+#appbar{
+    background:rgba(0,0,0,100);
+    height:10%;
+}
+
+#footer {
+    position:absolute;
+    width:100%;
+    bottom:0%;
+    background-color:rgba(0,0,0,100);
+    height:10%
+}
+
+#slider {
+    position:absolute;
+    right:-50px;
+    transform:rotate(90deg);    
   overflow: hidden;
 }
 body {
