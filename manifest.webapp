@@ -28,31 +28,6 @@
     "device-storage:sdcard": {
       "description": "Save to SDcard",
       "access": "readwrite"
-    },
-    "camera": {}
-  },
-  "activities": {
-    "open": {
-      "filters": {
-        "type": [
-          "image/jpeg",
-          "image/png",
-          "image/gif",
-          "image/bmp"
-        ]
-      },
-      "disposition": "inline",
-      "returnValue": true
-    },
-    "pick": {
-      "filters": {
-        "type": [
-          "image/*",
-          "image/jpeg"
-        ]
-      },
-      "disposition": "inline",
-      "returnValue": true
     }
   }
 }
