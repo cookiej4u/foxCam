@@ -5,7 +5,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
 (function () {
     $("li.page-toggler").click(function(e){
         e.preventDefault();
-        $("#navigator").css('visibility','visible');
         var target = $(this).attr('data-page-no');
         var target = $(this).attr('footer-page-no');
         $("div.page").each(function( index ) {
@@ -16,18 +15,15 @@ document.addEventListener('DOMComponentsLoaded', function(){
             if(index == target-1)
                 $(this).css('left','0');
         });
+        $("#navigator").css('left','0');
     });
     $(".fa-arrow-left").click(function(e){
         e.preventDefault();
-        $("#navigator").css('visibility','hidden');
-        $("#camera-screen").css('left','100%');
-        $("#edit-screen").css('left','200%');
-        $("#collage-screen").css('left','300%');
-        $("#setting-screen").css('left','400%');
-        $("#camera-footer").css('left','100%');
-        $("#edit-footer").css('left','200%');
-        $("#collage-footer").css('left','300%');
-        $("#setting-footer").css('left','400%');
+        $("#edit-screen").css('left','100%');
+        $("#collage-screen").css('left','100%');
+        $("#about-screen").css('left','100%');
+        $("div.footer").css('left','100%');
+        $("#navigator").css('left','100%');
     });
     $("i#choose-image").click(function(e){
         e.preventDefault();
