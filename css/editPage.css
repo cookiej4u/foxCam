@@ -1,78 +1,31 @@
-/*navigator and toolbar on Edit page*/
-#navigator {
-  background-color: rgb(0,0,0);
-  background-image: none;
-}
-div#back, div#compare {
-  width: 2em;
-}
-ul.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-  background-color: rgb(0,0,0);
-  margin: 0px 0px;
-  padding: 0px;
-}
-li {
-  display: inline-block;
-  width: 35px;
-  height: 40px;
-}
-li:hover, li:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
-  opacity: 0.6;
-}
-a {
-  display: block;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 30px;
-}
-i.button-fig {
-  color: rgb(128,128,128);
-}
-span.button-title {
-  font-family: "Berlin Sans FB Demi";
-  font-size: 0.4em;
-  color: rgb(255,255,255);
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0px auto;
-}
-.tappable{
-  cursor: pointer;
-}
-#dit-screen .inner span.wrapper{
+/*edit page specification*/
+#edit-screen .inner span.wrapper {
   display: inline-table;
 }
-#edit-screen div.inner{
+#edit-screen div.inner {
   width: 100%;
-  height:100%;
+  height: 100%;
   text-align: center;
   vertical-align: middle;
 }
-i#choose-image{
+i#choose-image {
   margin: 0 auto;
   padding-top: 45%;
   color: #eee;
   font-size:3em;
 }
-i#choose-image:after{
-  content:"Click here to choose an image";
-  font-size:18px !important;
+i#choose-image:after {
+  content: "Click here to choose an image";
+  font-size: 18px !important;
   display: block;
 }
-canvas#image-canvas{
-  width:100%;
-  height:100%;
+canvas#image-canvas {
+  width: 100%;
+  height: 100%;
   z-index: 2;
   position: absolute;
   background: #000000;
-  overflow:scroll;
+  overflow: scroll;
   display: none;
 }
+
