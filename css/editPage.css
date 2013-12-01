@@ -67,3 +67,12 @@ i#choose-image:after{
   font-size:18px !important;
   display: block;
 }
+canvas#image-canvas{
+  width:100%;
+  height:100%;
+  z-index: 2;
+  position: absolute;
+  background: #000000;
+  overflow:scroll;
+  display: none;
+}

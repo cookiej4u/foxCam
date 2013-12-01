@@ -68,7 +68,7 @@ div#setting-screen{
   background-image: none;
   visibility:hidden;
 }
-div#back, div#compare {
+div#back, div#save {
   width: 2em;
 }
 div#intro-footer{
@@ -104,10 +104,10 @@ li {
 #back{
 	padding-left:10px;
 }
-#compare{
+#save{
 	padding-right:10px;
 }
-li:hover, li:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
+li:hover, li:focus, #back:focus, #back:hover, #save:focus, #save:hover {
   opacity: 0.6;
 }
 a {
@@ -118,6 +118,7 @@ a {
   transform: translate(-50%, -50%);
   font-size: 30px;
 }
+
 i.button-fig {
   color: rgb(128,128,128);
 }
@@ -131,4 +132,64 @@ span.button-title {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0px auto;
+}
+
+.editButtom{
+  display: block;
+  position: relative;
+  top: 100%;
+  left: 16%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+
+.cropButtom{
+  display: block;
+  position: relative;
+  top: 100%;
+  left: 180%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+
+.rotateButtom{
+  display: block;
+  position: relative;
+  top: 100%;
+  left: 16%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+.effectButtom{
+  display: block;
+  position: relative;
+  top: 100%;
+  left: 16%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+
+#edit-intro{
+  visibility: visible;
+  position: absolute;
+  bottom: 0;
+}
+#edit-crop{
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+}
+#edit-rotate{
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+}
+#edit-effect{
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+}
+#scrollbar{
+  position: absolute;
+  bottom: 0;
 }
