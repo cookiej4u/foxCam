@@ -8,41 +8,48 @@
 </head>
 <body>
   <x-appbar id="navigator">
-     <div id="back">
-       <a>
-         <i class="fa fa-arrow-left button-fig"></i>
-       </a>
+    <div id="back">
+      <li class="tappable">
+        <a>
+           <i class="fa fa-arrow-left button-fig"></i>
+        </a>
+      </li>
     </div>
-    <header>
-           <li>
-         <a>
-           <i class="fa fa-reply button-fig"></i>
-         </a>
-       </li>
-       <li>
-         <a>
-           <i class="fa fa-share button-fig"></i>
-         </a>
-       </li>
-    </header>
-        <div id="compare">
-       <a>
-         <i class="fa fa-star button-fig"></i>
-         <span class="button-title">Compare</span>
-       </a>
-    </div>
+  <header>
+    <li class="tappable">
+      <a>
+        <i class="fa fa-reply button-fig"></i>
+      </a>
+    </li>
+    <li class="tappable">
+      <a>
+        <i class="fa fa-share button-fig"></i>
+      </a>
+    </li>
+  </header>
+  <div id="compare">
+    <li class="tappable">
+      <a>
+        <i class="fa fa-star button-fig"></i>
+        <span class="button-title">Compare</span>
+      </a>
+    </li>
+  </div>
   </x-appbar>
   <div>
     <div id="intro-screen" class="page">
       <ul>
-
-        <li class="page-toogler" data-page-no="1" footer-page-no="1"><a href="#edit">edit</a></li>
-        <li class="page-toogler" data-page-no="2" footer-page-no="2"><a href="#camera">2</a></li>
-        <li class="page-toogler" data-page-no="3" footer-page-no="3"><a href="#collage">3</a></li>
-        <li class="page-toogler" data-page-no="4" footer-page-no="4"><a href="#setting">4</a></li>
+        <li class="page-toggler" id="camera" data-page-no="1" footer-page-no="1"><a>Camera</a></li>
+        <li class="page-toggler" id="edit" data-page-no="2" footer-page-no="2"><a>Edit</a></li>
+        <li class="page-toggler" id="collage" data-page-no="3" footer-page-no="3"><a>Collage</a></li>
+        <li class="page-toggler" id="setting" data-page-no="4" footer-page-no="4"><a>Setting</a></li>
       </ul>
     </div>
-    <div id="edit-screen" class="page" data-page-no="1">
+    <div id="camera-screen" class="page" data-page-no="1">
+      camera page
+    </div>
+
+    <div id="edit-screen" class="page" data-page-no="2">
         <canvas id="image-canvas"></canvas>
         <div class="inner">
           <span class="wrapper tappable">
@@ -50,22 +57,22 @@
           </span>
         </div>
     </div>
-	<div id="camera-screen" class="page" data-page-no="2">
-      camera page
-    </div>
-	<div id="collage-screen" class="page" data-page-no="3">
+    <div id="collage-screen" class="page" data-page-no="3">
       collage page
     </div>
-	<div id="setting-screen" class="page" data-page-no="4">
+    <div id="setting-screen" class="page" data-page-no="4">
       setting page
     </div>
 
   </div> 
   <div>
-	<div id="intro-footer">
-	</div>
-	<div id="edit-footer" class="footer" footer-page-no="1">
-	  <ul>
+    <div id="intro-footer">
+    </div>
+    <div id="camera-footer" class="footer" footer-page-no="1">
+      camera-footer
+    </div>
+    <div id="edit-footer" class="footer" footer-page-no="2">
+      <ul>
         <li class="tappable">
           <a>
             <i class="fa fa-crop button-fig"></i>
@@ -103,16 +110,13 @@
           </a>
         </li>
       </ul>
-	</div>
-	<div id="camera-footer" class="footer" footer-page-no="2">
-		camera-footer
-	</div>
-	<div id="collage-footer" class="footer" footer-page-no="3">
-		collage-footer
-	</div>
-	<div id="setting-footer" class="footer" footer-page-no="4">
-		setting-footer
-	</div>
+    </div>
+    <div id="collage-footer" class="footer" footer-page-no="3">
+        collage-footer
+    </div>
+    <div id="setting-footer" class="footer" footer-page-no="4">
+        setting-footer
+    </div>
   </div>
   <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
   <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
