@@ -2,6 +2,7 @@
 @import url("../yaml/core/base.min.css");
 @import url("brick-0.9.1.byob.min.css");
 @import url("../fonts/font-awesome/css/font-awesome.min.css");
+
 /*navigator and toolbar on Edit page*/
 @import url("editPage.css");
 
@@ -40,7 +41,10 @@ header{
     position:absolute;
     right:-50px;
     transform:rotate(90deg);    
+  overflow: hidden;
+  background: rgba(0,0,0,100);
 }
+
 div.page{
   position: absolute;
   top: 10%;
@@ -56,6 +60,8 @@ div.footer{
   bottom: 0px;
   margin: 0px 0px;
   padding: 0px;
+  background-color: rgb(0,0,0);
+  left: 0;
 }
 
 div#edit-screen{
@@ -64,70 +70,81 @@ div#edit-screen{
     transition-property:left;
     transition-duration:.5s;
 }
-
+div.page {
+  transition-property: left;
+  transition-duration: .5s;
+}
 div#camera-screen{
-    left:200%;
-    background: blue;
-    transition-property:left;
-    transition-duration:.5s;
+  left: 100%;
+  background: blue;
 }
-
+div#edit-screen{
+  left: 200%;
+  background: black;
+}
 div#collage-screen{
-    left:300%;
-    background: yellow;
-    transition-property:left;
-    transition-duration:.5s;
+  left: 300%;
+  background: yellow;
 }
-
 div#setting-screen{
-    left:400%;
-    background: white;
-    transition-property:left;
-    transition-duration:.5s;
+  left: 400%;
+  background: white;
 }
 
-/*navigator and toolbar on Edit page*/
+/*Common attributes of navigator and toolbar*/
 #navigator {
   background-color: rgb(0,0,0);
   background-image: none;
+  visibility: hidden;
 }
-div#back, div#compare {
-  width: 2em;
+#navigator>header {
+  text-align: center;
 }
-div#intro-footer{
+div#back{
+  /*
+  It seems the appbar brick sets this by default.
+  padding-left: 10px;
+  */
+}
+div#compare {
+  padding-right: 10px;
+}
+
+div#camera-footer {
+  background-color: purple;
+  left: 100%;
+}
+div#edit-footer {
+  background-color: black;
+  left: 200%;
+}
+div#collage-footer {
+  background-color: pink;
+  left: 300%;
+}
+div#setting-footer {
+  background-color: green;
+  left: 400%;
+}
+
+div.footer>ul {
   width: 100%;
   position: absolute;
   bottom: 0px;
   background-color: rgb(0,0,0);
   margin: 0px 0px;
   padding: 0px;
-  left:0;
 }
-div#edit-footer {
-  background-color: black;
-  left:100%;
-}
-div#camera-footer {
-  background-color: purple;
-  left:200%;
-}
-div#collage-footer {
-  background-color: pink;
-  left:300%;
-}
-div#setting-footer {
-  background-color: green;
-  left:400%;
-}
-li {
+li.tappable {
   display: inline-block;
   width: 35px;
   height: 40px;
+  cursor: pointer;
 }
-li:hover, li:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
+li.tappable:hover, li.tappable:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
   opacity: 0.6;
 }
-a {
+li.tappable>a {
   display: block;
   position: relative;
   top: 50%;
@@ -135,6 +152,7 @@ a {
   transform: translate(-50%, -50%);
   font-size: 30px;
 }
+
 i.button-fig {
   color: rgb(128,128,128);
 }

@@ -10,6 +10,7 @@ div#intro-screen {
   display: table;
   width: 23.125%;
   height: 19.27%;
+  border-radius: 50%;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -22,35 +23,34 @@ div#intro-screen {
   font-weight: bold;
 }
 .page-toggler#camera {
-  background-image: url(../images/button-camera.svg);
+  background-color: rgba(71,71,71,0.75);
   top: 1.2%;
   left: 48.2%;
 }
 .page-toggler#camera:hover, .page-toggler#camera:focus {
-  background-image: none;
+  background-color: transparent;
 }
 .page-toggler#edit {
-  background-image: url(../images/button-edit.svg);
+  background-color: rgba(223,223,223,0.56);
   top: 16.5%;
   left: 48.2%;
 }
 .page-toggler#edit:hover, .page-toggler#edit:focus {
-  background-image: none;
+  background-color: transparent;
 }
 .page-toggler#collage {
-  background-image: url(../images/button-collage.svg);
-  top: 35.5%;
+  background-color: rgba(255,255,255,0.75);
+  top: 35.8%;
   left: 48.2%;
 }
 .page-toggler#collage:hover, .page-toggler#collage:focus {
-  background-image: none;
+  background-color: transparent;
 }
 .page-toggler#setting {
-  background-image: url(../images/button-setting.svg);
+  background-color: rgba(109,109,109,0.5);
   top: 54.2%;
   left: 10.8%;
 }
 .page-toggler#setting:hover, .page-toggler#setting:focus {
-  background-image: none;
+  background-color: transparent;
 }
-
