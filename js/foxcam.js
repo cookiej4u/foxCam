@@ -109,7 +109,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 canvas_wrapper.appendChild(img);
                 var context = canvas.getContext("2d");
                 context.drawImage(img,0,0, canvas.width, canvas.height);
-                //alert(canvas.width + "----" + canvas.height);
+                alert(canvas.width + "----" + canvas.height);
                 $("#image-canvas-wrapper").css('display','block');
             }
         }
@@ -133,13 +133,10 @@ document.addEventListener('DOMComponentsLoaded', function(){
             var rotate_height = $("#image-canvas-wrapper").width();
             var rotate_width = $("#image-canvas-wrapper").width();
         }
-        $('#theimage').rotateRight();
-        $('#theimage').css('display','none');
     });
     function myRotate(canvas, rw, rh){
-        myImage = new Image();
-        high_canvas = document.getElementById('theimage');
-        myImage.src = high_canvas.toDataURL();
+        $('#theimage').rotateRight();
+        $('#theimage').css('display','none');
         //alert("yaaa");
         //$("#preview-canvas").remove();
         //var p = document.getElementById('preview-canvas');
@@ -151,6 +148,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
         var context = canvas.getContext("2d",canvas.width,canvas.height);
         canvas.width = rw;
         canvas.height = rh;
+        //alert($('#theimage').width()+"__"+$('#theimage').height());
         //alert(canvas.width + "=="+canvas.height);
         /*canvas.width = rh;
         canvas.height = rw;
@@ -159,7 +157,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
         //alert(rw + "--"+rh);
         context.save();
         context.clearRect (0,0,canvas.width,canvas.height);
-        canvas.style.background = "blue";      
+        //canvas.style.background = "blue";
+        context.drawImage(document.getElementById('theimage'), 0, 0, rw,rh);        
         context.restore();
         //canvas_wrapper.appendChild(canvas);
     }
