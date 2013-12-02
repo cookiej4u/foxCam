@@ -12,7 +12,116 @@
    height="480"
    id="svg2">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4046">
+      <feGaussianBlur
+         stdDeviation="1.5"
+         result="result6"
+         id="feGaussianBlur4048" />
+      <feComposite
+         in2="result6"
+         operator="atop"
+         in="SourceGraphic"
+         result="result8"
+         id="feComposite4050" />
+      <feComposite
+         in2="SourceAlpha"
+         operator="atop"
+         in="result8"
+         result="result9"
+         id="feComposite4052" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4270">
+      <feGaussianBlur
+         id="feGaussianBlur4272"
+         stdDeviation="0.44112675" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4278">
+      <feGaussianBlur
+         id="feGaussianBlur4280"
+         stdDeviation="0.44112675" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4286">
+      <feGaussianBlur
+         id="feGaussianBlur4288"
+         stdDeviation="0.44112675" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4294">
+      <feGaussianBlur
+         id="feGaussianBlur4296"
+         stdDeviation="0.44112675" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4046-4">
+      <feGaussianBlur
+         stdDeviation="1.5"
+         result="result6"
+         id="feGaussianBlur4048-1" />
+      <feComposite
+         in2="result6"
+         operator="atop"
+         in="SourceGraphic"
+         result="result8"
+         id="feComposite4050-0" />
+      <feComposite
+         in2="SourceAlpha"
+         operator="atop"
+         in="result8"
+         result="result9"
+         id="feComposite4052-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4046-5">
+      <feGaussianBlur
+         stdDeviation="1.5"
+         result="result6"
+         id="feGaussianBlur4048-8" />
+      <feComposite
+         in2="result6"
+         operator="atop"
+         in="SourceGraphic"
+         result="result8"
+         id="feComposite4050-7" />
+      <feComposite
+         in2="SourceAlpha"
+         operator="atop"
+         in="result8"
+         result="result9"
+         id="feComposite4052-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4046-9">
+      <feGaussianBlur
+         stdDeviation="1.5"
+         result="result6"
+         id="feGaussianBlur4048-0" />
+      <feComposite
+         in2="result6"
+         operator="atop"
+         in="SourceGraphic"
+         result="result8"
+         id="feComposite4050-8" />
+      <feComposite
+         in2="SourceAlpha"
+         operator="atop"
+         in="result8"
+         result="result9"
+         id="feComposite4052-1" />
+    </filter>
+  </defs>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -25,26 +134,27 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="translate(0,-572.36218)"
-     id="layer1">
-    <rect
-       width="320"
-       height="480"
-       x="0"
-       y="0"
-       transform="translate(0,572.36218)"
-       id="rect3070"
-       style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <path
-       d="m -0.48241206,240.1206 0,-239.79899196 160.40201206,0 160.40201,0 0,239.79899196 0,239.799 -160.40201,0 -160.40201206,0 0,-239.799 z"
-       transform="translate(0,572.36218)"
-       id="path3072"
-       style="fill:#000000" />
-    <path
-       d="m 436.5829,349.74875 a 144.72362,144.72362 0 1 1 -289.44723,0 144.72362,144.72362 0 1 1 289.44723,0 z"
-       transform="matrix(1.2200117,0,0,1.2200117,-87.609741,402.0509)"
-       id="path3076"
-       style="fill:#191919" />
-  </g>
+  <rect
+     width="320"
+     height="480"
+     x="0"
+     y="0"
+     id="rect3070"
+     style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     d="m -0.48241206,240.1206 0,-239.79899196 160.40201206,0 160.40201,0 0,239.79899196 0,239.799 -160.40201,0 -160.40201206,0 0,-239.799 z"
+     id="path3072"
+     style="fill:#000000" />
+  <path
+     d="m 262.76168,74.366184 a 176.56451,176.56451 0 1 1 -353.129002,0 176.56451,176.56451 0 1 1 353.129002,0 z"
+     id="path3076-51"
+     style="fill:#6d6d6d;fill-opacity:0.25098039" />
+  <path
+     d="m 451.78707,251.00601 a 176.56451,176.56451 0 1 1 -353.129009,0 176.56451,176.56451 0 1 1 353.129009,0 z"
+     id="path3076"
+     style="fill:#6d6d6d;fill-opacity:0.25098039" />
+  <path
+     d="m 258.53634,343.94365 a 176.56451,176.56451 0 0 1 -353.129022,0 176.56451,176.56451 0 1 1 353.129022,0 z"
+     id="path3076-5"
+     style="fill:#6d6d6d;fill-opacity:0.25098039" />
 </svg>
