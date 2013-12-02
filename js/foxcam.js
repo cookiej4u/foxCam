@@ -152,4 +152,26 @@ document.addEventListener('DOMComponentsLoaded', function(){
         context.restore();
         
     }
+
+    $("#flip-hoz, #flip-vtc").click(function(e){
+        var canvas = document.getElementById('preview-canvas');
+        myFlip(canvas, this.id);
+        myFlip(document.getElementById('theimage'), this.id);
+    });
+
+    function myFlip(canvas, rol){
+        context = canvas.getContext('2d');
+        if(rol === 'flip-hoz'){
+            context.translate(canvas.width, 0);
+            context.scale(-1, 1);
+        }else{
+            context.translate(0, canvas.height);
+            context.scale(1, -1);
+        }
+        context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+        return true;
+    }
+    $("#save").click(function(e){
+        $('#theimage').css('display','block');
+    });
 })();
