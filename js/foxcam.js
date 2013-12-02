@@ -51,6 +51,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
             img.onload = function() {
                 img_width = img.width;
                 img_height = img.height;
+                img.id = 'theimage';
                 bufferImage = new Image();
                 bufferImage.src = img.src;
                 bufferImage.width = img.width;
@@ -73,7 +74,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 }
                 canvas.id = "preview-canvas";
                 canvas.style.position = "absolute";
-                div.appendChild(canvas);
+                div.appendChild(img);
                 var context = canvas.getContext("2d");
                 context.drawImage(img,0,0, canvas.width, canvas.height);
                 var context2 = high_res_canvas.getContext("2d");
@@ -92,19 +93,21 @@ document.addEventListener('DOMComponentsLoaded', function(){
         }
     });
     $("#compare").click(function(e){
-        var canvas = document.getElementById('preview-canvas');
+        $('#theimage').rotateLeft();
+        /*var canvas = document.getElementById('preview-canvas');
         if($('#preview-canvas').length != 0){
-            //if(canvas.height > canvas.width){
+            if(canvas.height > canvas.width){
                 var rotate_width = $("#image-canvas-wrapper").width();
                 var rotate_height = Math.ceil(img_width*rotate_width/img_height);
                 //alert(rotate_width + "--"+rotate_height);
                 myRotate(canvas);
-            //}
+            }
         }
         else
-            alert("fuck you");
+            alert("fuck you");*/
     });
     function myRotate(canvas){
+        var canvas = document.createElement('canvas')
         var context = canvas.getContext("2d",ch,cw);
         var context2 = high_res_canvas.getContext("2d");
         if (!rotating) {
