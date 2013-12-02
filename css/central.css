@@ -106,7 +106,11 @@ div#back{
   padding-left: 10px;
   */
 }
+<<<<<<< HEAD
 div#compare {
+=======
+div#save {
+>>>>>>> gary
   padding-right: 10px;
 }
 
@@ -141,7 +145,8 @@ li.tappable {
   height: 40px;
   cursor: pointer;
 }
-li.tappable:hover, li.tappable:focus, #back:focus, #back:hover, #compare:focus, #compare:hover {
+
+li.tappable:hover, li.tappable:focus, #back:focus, #back:hover, #save:focus, #save:hover {
   opacity: 0.6;
 }
 li.tappable>a {
@@ -166,4 +171,33 @@ span.button-title {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0px auto;
+}
+#edit-intro{
+  display:inline-block;
+  position: absolute;
+  bottom: 0;
+}
+#edit-crop{
+  display:none;
+  position: absolute;
+  bottom: 0;
+}
+#edit-rotate{
+  display:none;
+  position: absolute;
+  bottom: 0;
+}
+#edit-effect{
+  display:none;
+  position: absolute;
+  bottom: 0;
+}
+#scrollBar{ 
+  height: 50px;
+  width: 200px;
+  margin-bottom: -27px;
+  background: black;
+  white-space:nowrap;
+  overflow: scroll;
+  display:inline-block;
 }
