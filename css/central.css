@@ -43,9 +43,9 @@ header{
     transform:rotate(90deg);    
   overflow: hidden;
 }
-body {
-  background-image: url(../images/intro-bg.svg);
-  background-size: 100% 100%;
+body, html {
+  background: url(../images/intro-bg.svg) !important;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }

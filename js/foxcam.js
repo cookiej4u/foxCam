@@ -109,24 +109,40 @@ document.addEventListener('DOMComponentsLoaded', function(){
             }
         }
     });
-    $("#rotate-right").click(function(){
+    $("#rotate-right, #rotate-left").click(function(e){
         var canvas = document.getElementById('preview-canvas');
         if($('#theimage').height() > $('#theimage').width()){
             var rotate_width = $("#image-canvas-wrapper").width();
             var rotate_height = Math.ceil(canvas.width*rotate_width/canvas.height);
-            myRotate(canvas, rotate_width, rotate_height);
+            if(this.id ==="rotate-right")
+                myRotate(canvas, rotate_width, rotate_height, true);
+            else
+                myRotate(canvas, rotate_width, rotate_height, false);
         }else if ($('#theimage').height() < $('#theimage').width()){
             var rotate_height = $("#image-canvas-wrapper").height();
             var rotate_width = Math.ceil(canvas.height*rotate_height/canvas.width);
-            myRotate(canvas, rotate_width, rotate_height);
+            if(this.id ==="rotate-right")
+                myRotate(canvas, rotate_width, rotate_height, true);
+            else
+                myRotate(canvas, rotate_width, rotate_height, false);
         }else{
             var rotate_height = $("#image-canvas-wrapper").width();
             var rotate_width = $("#image-canvas-wrapper").width();
+            if(this.id ==="rotate-right")
+                myRotate(canvas, rotate_width, rotate_height, true);
+            else
+                myRotate(canvas, rotate_width, rotate_height, false);
         }
     });
-    function myRotate(canvas, rw, rh){
-        $('#theimage').rotateRight();
-        $('#theimage').css('display','none');
+
+    function myRotate(canvas, rw, rh, rol){
+        if(rol == true){
+            $('#theimage').rotateRight();
+            $('#theimage').css('display','none');
+        }else{
+            $('#theimage').rotateLeft();
+            $('#theimage').css('display','none');
+        }
         var context = canvas.getContext("2d",canvas.width,canvas.height);
         canvas.width = rw;
         canvas.height = rh;
@@ -134,5 +150,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
         context.clearRect (0,0,canvas.width,canvas.height);
         context.drawImage(document.getElementById('theimage'), 0, 0, rw,rh);        
         context.restore();
+        
     }
 })();
