@@ -109,25 +109,19 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 canvas_wrapper.appendChild(img);
                 var context = canvas.getContext("2d");
                 context.drawImage(img,0,0, canvas.width, canvas.height);
-                alert(canvas.width + "----" + canvas.height);
                 $("#image-canvas-wrapper").css('display','block');
             }
         }
     });
     $("#rotate-right").click(function(){
-        //alert("right");
-        //alert($('#theimage').attr('width'));
         var canvas = document.getElementById('preview-canvas');
         if($('#theimage').height() > $('#theimage').width()){
             var rotate_width = $("#image-canvas-wrapper").width();
             var rotate_height = Math.ceil(canvas.width*rotate_width/canvas.height);
-            //alert(rotate_width + "--"+rotate_height);
             myRotate(canvas, rotate_width, rotate_height);
         }else if ($('#theimage').height() < $('#theimage').width()){
-            //alert("gooood");
             var rotate_height = $("#image-canvas-wrapper").height();
             var rotate_width = Math.ceil(canvas.height*rotate_height/canvas.width);
-            //alert(rotate_width + "--"+rotate_height);
             myRotate(canvas, rotate_width, rotate_height);
         }else{
             var rotate_height = $("#image-canvas-wrapper").width();
@@ -137,29 +131,12 @@ document.addEventListener('DOMComponentsLoaded', function(){
     function myRotate(canvas, rw, rh){
         $('#theimage').rotateRight();
         $('#theimage').css('display','none');
-        //alert("yaaa");
-        //$("#preview-canvas").remove();
-        //var p = document.getElementById('preview-canvas');
-        //var canvas = document.createElement('canvas');
-        //p.parentNode.replaceChild(canvas, p);
-        //canvas.id = "preview-canvas";
-        //var canvas_wrapper = document.getElementById('image-canvas-wrapper');
-        //var canvas = document.getElementById('preview-canvas');
         var context = canvas.getContext("2d",canvas.width,canvas.height);
         canvas.width = rw;
         canvas.height = rh;
-        //alert($('#theimage').width()+"__"+$('#theimage').height());
-        //alert(canvas.width + "=="+canvas.height);
-        /*canvas.width = rh;
-        canvas.height = rw;
-        rw = canvas.width;
-        rh = canvas.height;*/
-        //alert(rw + "--"+rh);
         context.save();
         context.clearRect (0,0,canvas.width,canvas.height);
-        //canvas.style.background = "blue";
         context.drawImage(document.getElementById('theimage'), 0, 0, rw,rh);        
         context.restore();
-        //canvas_wrapper.appendChild(canvas);
     }
 })();
