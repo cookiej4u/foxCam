@@ -7,42 +7,50 @@
     <link rel="stylesheet" href="css/central.css" type="text/css"/>
 </head>
 <body>
+
   <x-appbar id="navigator">
-     <div id="back">
-       <a>
-         <i class="fa fa-arrow-left button-fig"></i>
-       </a>
+    <div id="back">
+      <li class="tappable">
+        <a>
+           <i class="fa fa-arrow-left button-fig"></i>
+        </a>
+      </li>
     </div>
-    <header>
-           <li>
-         <a>
-           <i class="fa fa-reply button-fig"></i>
-         </a>
-       </li>
-       <li>
-         <a>
-           <i class="fa fa-share button-fig"></i>
-         </a>
-       </li>
-    </header>
-        <div id="save">
-       <a>
-         <i class="fa fa-save button-fig"></i>
-         <span class="button-title">Save</span>
-       </a>
-    </div>
+  <header>
+    <li class="tappable">
+      <a>
+        <i class="fa fa-reply button-fig"></i>
+      </a>
+    </li>
+    <li class="tappable">
+      <a>
+        <i class="fa fa-share button-fig"></i>
+      </a>
+    </li>
+  </header>
+  <div id="save">
+    <li class="tappable">
+      <a>
+        <i class="fa fa-save button-fig"></i>
+        <span class="button-title">Save</span>
+      </a>
+    </li>
+  </div>
   </x-appbar>
   <div>
     <div id="intro-screen" class="page">
       <ul>
-
-        <li class="page-toogler" data-page-no="1" footer-page-no="1"><a href="#edit">edit</a></li>
-        <li class="page-toogler" data-page-no="2" footer-page-no="2"><a href="#camera">2</a></li>
-        <li class="page-toogler" data-page-no="3" footer-page-no="3"><a href="#collage">3</a></li>
-        <li class="page-toogler" data-page-no="4" footer-page-no="4"><a href="#setting">4</a></li>
+        <li class="page-toggler" id="camera" data-page-no="1" footer-page-no="1"><a>Camera</a></li>
+        <li class="page-toggler" id="edit" data-page-no="2" footer-page-no="2"><a>Edit</a></li>
+        <li class="page-toggler" id="collage" data-page-no="3" footer-page-no="3"><a>Collage</a></li>
+        <li class="page-toggler" id="setting" data-page-no="4" footer-page-no="4"><a>Setting</a></li>
       </ul>
     </div>
-    <div id="edit-screen" class="page" data-page-no="1">
+    <div id="camera-screen" class="page" data-page-no="1">
+      camera page
+    </div>
+
+    <div id="edit-screen" class="page" data-page-no="2">
         <canvas id="image-canvas"></canvas>
         <div class="inner">
           <span class="wrapper tappable">
@@ -50,155 +58,172 @@
           </span>
         </div>
     </div>
-	<div id="camera-screen" class="page" data-page-no="2">
-      camera page
-    </div>
-	<div id="collage-screen" class="page" data-page-no="3">
+    <div id="collage-screen" class="page" data-page-no="3">
       collage page
     </div>
-	<div id="setting-screen" class="page" data-page-no="4">
+    <div id="setting-screen" class="page" data-page-no="4">
       setting page
     </div>
 
   </div> 
   <div>
-	<div id="intro-footer">
-	</div>
-	<div id="edit-footer" class="footer" footer-page-no="1">
-	  <ul id="edit-intro">
+    <div id="intro-footer">
+    </div>
+    <div id="camera-footer" class="footer" footer-page-no="1">
+      camera-footer
+    </div>
+    <div id="edit-footer" class="footer" footer-page-no="2">
+      <ul id="edit-intro">
         <li class="tappable">
-          <div class="editButtom">
+          <a id="crop_buttom">
             <i class="fa fa-crop button-fig"></i>
             <span class="button-title">Crop</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="editButtom">
+          <a id="rotate_buttom">
             <i class="fa fa-repeat button-fig"></i>
             <span class="button-title">Rotate</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="editButtom">
+          <a>
             <i class="fa fa-font button-fig"></i>
               <span class="button-title">Text</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="editButtom">
+          <a id="effect_buttom">
             <i class="fa fa-magic button-fig"></i>
               <span class="button-title">Effect</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="editButtom">
+          <a>
             <i class="fa fa-credit-card button-fig"></i>
               <span class="button-title">Frame</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="editButtom">
+          <a>
             <i class="fa fa-heart button-fig"></i>
               <span class="button-title">Stamps</span>
-          </div>
+          </a>
         </li>
       </ul>
 
       <ul id="edit-crop">
         <li class="tappable">
-          <div class="cropButtom">
+          <a class="cropButtom">
             <i class="fa fa-times button-fig"></i>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="cropButtom">
+          <a class="cropButtom">
             <i class="fa fa-square-o button-fig"></i>
               <span class="button-title">Effect</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="cropButtom">
+          <a class="cropButtom">
             <i class="fa fa-square-o button-fig"></i>
               <span class="button-title">Frame</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="cropButtom">
+          <a class="cropButtom">
             <i class="fa fa-check button-fig"></i>
-          </div>
+          </a>
         </li>
       </ul>
 
       <ul id="edit-rotate">
         <li class="tappable">
-          <div class="rotateButtom">
+          <a class="rotateButtom">
             <i class="fa fa-times button-fig"></i>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="rotateButtom">
+          <a class="rotateButtom">
             <i class="fa fa-rotate-left button-fig"></i>
             <span class="button-title">Rotate</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="rotateButtom">
+          <a class="rotateButtom">
             <i class="fa fa-rotate-right button-fig"></i>
               <span class="button-title">Text</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="rotateButtom">
+          <a class="rotateButtom">
             <i class="fa fa-arrows-h button-fig"></i>
               <span class="button-title">Effect</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="rotateButtom">
+          <a class="rotateButtom">
             <i class="fa fa-arrows-v button-fig"></i>
               <span class="button-title">Frame</span>
-          </div>
+          </a>
         </li>
         <li class="tappable">
-          <div class="rotateButtom">
+          <a class="rotateButtom">
             <i class="fa fa-check button-fig"></i>
-          </div>
+          </a>
         </li>
       </ul>
 
       <ul id="edit-effect">
         <li class="tappable">
-          <div class="effectButtom">
+          <a class="effectButtom">
             <i class="fa fa-times button-fig"></i>
-          </div>
+          </a>
         </li>
-        <li>
-          <div class="scrollBar">
-            
-          </div>
+        <div id="scrollBar">
+          <li class="tappable">
+          <a class="rotateButtom">
+            <i class="fa fa-check button-fig"></i>
+          </a>
+        </li>
+          <li class="tappable">
+          <a class="rotateButtom">
+            <i class="fa fa-check button-fig"></i>
+          </a>
         </li>
         <li class="tappable">
-          <div class="effectButtom">
+          <a class="rotateButtom">
             <i class="fa fa-check button-fig"></i>
-          </div>
+          </a>
+        </li>
+        <li class="tappable">
+          <a class="rotateButtom">
+            <i class="fa fa-check button-fig"></i>
+          </a>
+        </li>
+        <li class="tappable">
+          <a class="rotateButtom">
+            <i class="fa fa-check button-fig"></i>
+          </a>
+        </li>
+        </div>
+        <li class="tappable">
+          <a class="effectButtom">
+            <i class="fa fa-check button-fig"></i>
+          </a>
         </li>
       </ul>
-
-	</div>
-	<div id="camera-footer" class="footer" footer-page-no="2">
-		camera-footer
-	</div>
-	<div id="collage-footer" class="footer" footer-page-no="3">
-		collage-footer
-	</div>
-	<div id="setting-footer" class="footer" footer-page-no="4">
-		setting-footer
-	</div>
+    </div>
+    <div id="collage-footer" class="footer" footer-page-no="3">
+        collage-footer
+    </div>
+    <div id="setting-footer" class="footer" footer-page-no="4">
+        setting-footer
+    </div>
   </div>
   <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
   <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
   <script type="text/javascript" src="js/fabric.js.all.min.js"></script>
   <script type="text/javascript" src="js/foxcam.js"></script>
-  <script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
 </body>
 </html>
