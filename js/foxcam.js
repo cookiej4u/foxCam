@@ -82,6 +82,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 img.id = 'theimage';
                 img.style.display = 'none';
                 bufferImage = new Image();
+                bufferImage.id = 'bufferImage';
                 bufferImage.src = img.src;
                 bufferImage.width = img.width;
                 bufferImage.height = img.height;
@@ -148,19 +149,25 @@ document.addEventListener('DOMComponentsLoaded', function(){
         canvas.height = rh;
         context.save();
         context.clearRect (0,0,canvas.width,canvas.height);
-        context.drawImage(document.getElementById('theimage'), 0, 0, rw,rh);        
+        context.drawImage(document.getElementById('theimage'), 0, 0, rw,rh);
         context.restore();
         
     }
 
     $("#flip-hoz, #flip-vtc").click(function(e){
         var canvas = document.getElementById('preview-canvas');
-        myFlip(canvas, this.id);
-        myFlip(document.getElementById('theimage'), this.id);
+        if($('canvas#theimage').length ==0)
+            $('#theimage').rotateRight(0);/*make sure canvas is existing*/
+        else
+            alert('already');
+
+        if(myFlip(canvas, this.id))
+            myFlip($('canvas#theimage')[0], this.id);
     });
 
     function myFlip(canvas, rol){
         context = canvas.getContext('2d');
+        context.save();
         if(rol === 'flip-hoz'){
             context.translate(canvas.width, 0);
             context.scale(-1, 1);
@@ -168,9 +175,20 @@ document.addEventListener('DOMComponentsLoaded', function(){
             context.translate(0, canvas.height);
             context.scale(1, -1);
         }
+        //context.restore();
         context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+        context.restore();
         return true;
     }
+
+    function setPixel(imageData, x, y, r, g, b, a) {
+        index = (x + y * imageData.width) * 4;
+        imageData.data[index+0] = r;
+        imageData.data[index+1] = g;
+        imageData.data[index+2] = b;
+        imageData.data[index+3] = a;
+    }
+
     $("#save").click(function(e){
         $('#theimage').css('display','block');
     });
