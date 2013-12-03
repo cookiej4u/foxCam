@@ -106,6 +106,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 canvas_wrapper.appendChild(img);
                 var context = canvas.getContext("2d");
                 context.drawImage(img,0,0, canvas.width, canvas.height);
+                //$('#theimage').rotateRight(0);
                 $("#image-canvas-wrapper").css('display','block');
             }
         }
@@ -156,13 +157,34 @@ document.addEventListener('DOMComponentsLoaded', function(){
 
     $("#flip-hoz, #flip-vtc").click(function(e){
         var canvas = document.getElementById('preview-canvas');
-        if($('canvas#theimage').length ==0)
-            $('#theimage').rotateRight(0);/*make sure canvas is existing*/
-        else
-            alert('already');
-
-        if(myFlip(canvas, this.id))
-            myFlip($('canvas#theimage')[0], this.id);
+        if($('canvas#theimage').length == 0){
+            //alert("shitttt");
+            myFlip(canvas, this.id);
+            //$('#theimage').rotateRight(0);/*make sure canvas is existing*/
+            var acanvas = document.createElement('canvas');
+            acanvas.id = 'theimage';
+            acanvas.width = img_width;
+            acanvas.height = img_height
+            var acontext = acanvas.getContext('2d');
+            acontext.save();
+            if(this.id ==='flip-hoz'){
+                acontext.translate(acanvas.width, 0);
+                acontext.scale(-1, 1);
+            }else{
+                acontext.translate(0, acanvas.height);
+                acontext.scale(1, -1);
+            }
+            acontext.drawImage(bufferImage, 0, 0, img_width, img_height);
+            acontext.restore();
+            $('img#theimage')[0].parentNode.replaceChild(acanvas, $('img#theimage')[0]);
+            $('#theimage').css('display','none');
+            $('#theimage').css('display','block');
+        }
+        else{
+            if(myFlip(canvas, this.id))
+                myFlip($('canvas#theimage')[0], this.id);
+            //alert('done');
+        }
     });
 
     function myFlip(canvas, rol){
