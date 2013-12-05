@@ -48,21 +48,43 @@ div#stamps-zone {
   width: 0;
   height: 0;
 }
-div#stamps-zone>ul :before{
-  content: "Choose your stamps:";
+div#stamps-zone>ul:first-of-type:before{
+  content: "Pick your stamps";
   text-align: center;
   color: white;
-  font-size: 18px !important;
+  font-size: 1.5em !important;
   display: block;
+  padding: 2% 0;
 }
 div#stamps-zone>ul {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: block;
   margin: 0;
+  padding: 0;
 }
 li.stamp {
+  position: relative;
   display: inline-block;
-  margin: 10%;
+  width: 40%;
+  height: 0;
+  margin: 2% 4%;
+  padding: 20% 0;
+  box-shadow: 0px 0px 20px 1px #fff inset;
+  border-radius: 50%;
 }
-
+li.stamp>img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 80%;
+  max-height: 80%;
+  /*a workaround to improve image quality*/
+  box-shadow: 0px 0px 0px 0px #000;
+}
 /*toolbar specification*/
 #edit-intro{
   display: inline-block;
@@ -96,6 +118,9 @@ li.stamp {
 #edit-stamps{
   display: none;
   position: absolute;
-  bottom: 0;
+  padding: 0 1%;
 }
-
+#edit-stamps>li{
+  width: 9%;
+  margin: 0 20%;
+}
