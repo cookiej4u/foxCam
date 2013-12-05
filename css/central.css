@@ -156,32 +156,4 @@ span.button-title {
   transform: translate(-50%, -50%);
   margin: 0px auto;
 }
-#edit-intro{
-  display:inline-block;
-  position: absolute;
-  bottom: 0;
-}
-#edit-crop{
-  display:none;
-  position: absolute;
-  bottom: 0;
-}
-#edit-rotate{
-  display:none;
-  position: absolute;
-  bottom: 0;
-}
-#edit-effect{
-  display:none;
-  position: absolute;
-  bottom: 0;
-}
-#scrollBar{ 
-  height: 50px;
-  width: 200px;
-  margin-bottom: -27px;
-  background: black;
-  white-space:nowrap;
-  overflow: scroll;
-  display:inline-block;
-}
+

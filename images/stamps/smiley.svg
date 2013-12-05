@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="5cm" height="5cm" viewBox="0 0 22 22"
+     version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <g transform="translate(11,11) rotate(190)">
+    <circle r="10" stroke="black" stroke-width="1" fill="yellow" />
+    <defs>
+      <circle id="eye" r="2" fill="black" />
+    </defs>
+    <use xlink:href="#eye" x="+3.5" y="+3" />
+    <use xlink:href="#eye" x="-3.5" y="+3" />
+    <path d="M -5,-3 A 6,6 0 0 1 +5,-3" fill="none" stroke="black"
+      stroke-width="2" stroke-linecap="round" />
+  </g>
+</svg>

@@ -1,5 +1,5 @@
 document.addEventListener('DOMComponentsLoaded', function(){
-	//alert("loaded");
+    //alert("loaded");
 });
 
 (function () {
@@ -35,19 +35,25 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $("div.footer").css('left','100%');
         $("#navigator").css('left','100%');
     });
-    $("#crop_buttom").click(function(e){
+    $("#crop_button").click(function(e){
         e.preventDefault();
         alert("You can do it when picking an image.");
     });
-    $("#rotate_buttom").click(function(e){
+    $("#rotate_button").click(function(e){
         e.preventDefault();
         $("#edit-intro").css('display','none');
         $("#edit-rotate").css('display','inline-block');
     });
-    $("#effect_buttom").click(function(e){
+    $("#effect_button").click(function(e){
         e.preventDefault();
         $("#edit-intro").css('display','none');
         $("#edit-effect").css('display','inline-block');
+    });
+    $("#stamps_button").click(function(e){
+        e.preventDefault();
+        $("#edit-intro").css('display','none');
+        $("#edit-stamps").css('display','inline-block');
+        $("#stamps-zone").css('display','inline-block');
     });
     $(".fa-check").click(function(e){
         e.preventDefault();
@@ -55,6 +61,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
         //$("#edit-crop").css('display','none');
         $("#edit-rotate").css('display','none');
         $("#edit-effect").css('display','none');
+        $("#edit-stamps").css('display','none');
+        $("#stamps-zone").css('display','none');
     });
     $(".fa-times").click(function(e){
         e.preventDefault();
@@ -62,6 +70,65 @@ document.addEventListener('DOMComponentsLoaded', function(){
         //$("#edit-crop").css('display','none');
         $("#edit-rotate").css('display','none');
         $("#edit-effect").css('display','none');
+        $("#edit-stamps").css('display','none');
+        $("#stamps-zone").css('display','none');
+    });
+    $("li.stamp").click(function(e) {
+        e.preventDefault();
+        $('#stamps-zone>ul').css('display', 'none');
+        var preCvs = document.getElementById('preview-canvas');
+        var canvas = new fabric.Canvas('playground' );
+        canvas.setDimensions({ width: preCvs.width, height: preCvs.height });
+        canvas.setBackgroundImage(
+            preCvs.toDataURL(),
+            canvas.renderAll.bind(canvas), {
+            originX: 'left',
+            originY: 'top'
+        });
+        canvas.allowTouchScrolling = true;
+        var stampURL = 'images/stamps/smiley.svg';
+        fabric.Image.fromURL(stampURL, function(img) {
+            var ratio = 0.4*preCvs.width/img.getWidth();
+            img.setWidth(img.getWidth()*ratio);
+            img.setHeight(img.getHeight()*ratio);
+            canvas.add(img);
+            canvas.centerObject(img);
+            img.setCoords();
+            var stamphandler = function(e) {
+                e.preventDefault();
+                var data = document.getElementById('theimage');
+                data.onload = function() {
+                    preCvs.getContext("2d", preCvs.width, preCvs.height)
+                        .drawImage(data, 0, 0, preCvs.width, preCvs.height);
+                };
+                if($(e.target).is('.fa-check')) {
+                    var bench = document.createElement('canvas');
+                    bench.width = data.width;
+                    bench.height = data.height;
+                    var ctx = bench.getContext("2d", data.width, data.height);
+                    ctx.drawImage(data, 0, 0);
+                    
+                    var rw = data.width/preCvs.width
+                    var rh = data.height/preCvs.height;
+                    var stamp = new Image();
+                    stamp.src = stampURL;
+                    var width = img.getWidth()*rw;
+                    var height = img.getHeight()*rh;
+                    ctx.save();
+                    ctx.translate(img.getLeft()*rw, img.getTop()*rh);
+                    ctx.rotate(img.angle/180*Math.PI);
+                    ctx.drawImage(stamp, 0, 0, width, height);
+                    ctx.restore();
+                    data.src = bench.toDataURL();
+                }
+                canvas.dispose();
+                canvas.setDimensions({width: 0, height: 0});
+                $('#stamps-zone>ul').css('display', 'block');
+                $("#stamps-zone").css('display','none');
+                $(".stampsButton>.fa").unbind('click', stamphandler);
+            };
+            $(".stampsButton>.fa").click(stamphandler);
+        });
     });
     $("i#choose-image").click(function(e){
         e.preventDefault();
