@@ -8,7 +8,6 @@
 </head>
 <body>
   <div id="head">
-    <x-appbar id="navigator">
       <div id="back">
         <li class="tappable">
           <a>
@@ -16,18 +15,11 @@
           </a>
         </li>
       </div>
-      <header>
-        <li class="tappable">
-          <a>
-            <i class="fa fa-reply button-fig"></i>
-          </a>
-        </li>
-        <li class="tappable">
-          <a>
-            <i class="fa fa-share button-fig"></i>
-          </a>
-        </li>
-      </header>
+      <!-- <div id="loading">
+            <a>
+              <i class="fa fa-spinner fa-spin"></i>
+            </a>
+      </div> -->
       <div id="save">
         <li class="tappable">
           <a>
@@ -38,7 +30,6 @@
         </li>
 
       </div>
-    </x-appbar>
   </div>
   <div>
     <div id="intro-screen" class="page">
@@ -187,28 +178,29 @@
         </li>
         <div id="scrollBar">
           <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
+            <a id="effect-1" class="rotateButton effects" data-effect-id="1">
+              <i class="fa fa-circle"></i>
+              <span class="button-title">Vintage</span>
             </a>
           </li>
           <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
+            <a id="effect-2" class="rotateButton effects" data-effect-id="2">
+              <i class="fa fa-circle"></i>
             </a>
           </li>
           <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
+            <a id="effect-3" class="rotateButton effects" data-effect-id="3">
+              <i class="fa fa-circle"></i>
             </a>
           </li>
           <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
+            <a id="effect-4" class="rotateButton effects" data-effect-id="4">
+              <i class="fa fa-circle"></i>
             </a>
           </li>
           <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
+            <a id="effect-5" class="rotateButton effects" data-effect-id="5">
+              <i class="fa fa-circle"></i>
             </a>
           </li>
         </div>
@@ -256,5 +248,6 @@
   <script type="text/javascript" src="js/jquery.rotate.1-1.js"></script>
   <script type="text/javascript" src="js/caman.full.min.js"></script>
   <script type="text/javascript" src="js/foxcam.js"></script>
+  <script type="text/javascript" src="js/myFilter.js"></script>
 </body>
 </html>

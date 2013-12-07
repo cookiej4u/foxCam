@@ -123,6 +123,9 @@ li.stamp>img {
   position: absolute;
   bottom: 0;
 }
+#edit-effect .fa-circle{
+  color:#484848;
+}
 #scrollBar{ 
   height: 50px;
   width: 200px;

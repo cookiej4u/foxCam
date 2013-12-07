@@ -1,3 +1,4 @@
+var editable = false;
 document.addEventListener('DOMComponentsLoaded', function(){
     //alert("loaded");
 });
@@ -144,7 +145,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $("#edit-intro").css('display', 'inline-block');
         //$("#edit-crop").css('display', 'none');
         $("#edit-rotate").css('display', 'none');
-        $("#edit-effect").css('display', 'none');
+        //$("#edit-effect").css('display', 'none');
         $("#edit-stamps").css('display', 'none');
         $("#stamps-zone").css('display', 'none');
         $("#edit-text").css('display', 'none');
@@ -347,15 +348,47 @@ document.addEventListener('DOMComponentsLoaded', function(){
         return true;
     }
 
-    function setPixel(imageData, x, y, r, g, b, a) {
-        index = (x + y * imageData.width) * 4;
-        imageData.data[index+0] = r;
-        imageData.data[index+1] = g;
-        imageData.data[index+2] = b;
-        imageData.data[index+3] = a;
-    }
-
     $("#save").click(function(e){
         $('#theimage').css('display','block');
+    });
+    /*$("#effect_button").click(function(e){
+        e.preventDefault();
+        if(img_width <= 0) {
+            $("#edit-effect").css('display', 'none');
+            alert("Please pick up an image first");
+            return;
+        }else{
+            editable = true;
+            myEffect();
+        }
+    });*/
+    
+    $(".effects").click(function(e){
+        e.preventDefault();
+        if(img_width <= 0){
+            alert("Please pick up an image first");
+            return;
+        }
+        var ef_id = $(this).attr("data-effect-id");
+        switch (ef_id){
+            case '1':
+                Caman("#preview-canvas", function (e) {
+                    this.greyscale();
+                    this.contrast(5).render();
+                    this.noise(3).render();
+                    this.sepia(100).render();
+                    this.channels({
+                        red: 8,
+                        blue: 2,
+                        green: 4
+                    }).render();;
+                    this.gamma(0.87).render();
+                    this.vignette("40%", 30).render();
+                });
+                alert('yoooo1');
+                break;
+            default:
+                break;
+        }
     });
 })();
