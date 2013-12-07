@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/central.css" type="text/css"/>
 </head>
 <body>
-  <div>
+  <div id="head">
     <x-appbar id="navigator">
       <div id="back">
         <li class="tappable">
@@ -50,12 +50,47 @@
     </div>
 
     <div id="edit-screen" class="page" data-page-no="2">
-        <div id="image-canvas-wrapper"></div>
-        <div class="inner">
-          <span class="wrapper tappable">
-            <i id="choose-image" class="fa fa-file tappable"></i>
-          </span>
+      <div id="image-canvas-wrapper"></div>
+      <div class="inner">
+        <span class="wrapper tappable">
+          <i id="choose-image" class="fa fa-file tappable"></i>
+        </span>
+      </div>
+  
+      <div id="fabric-zone">
+        <canvas id="playground"></canvas>
+        <div id="text-zone">
+          <textarea id="textInput" name="text" placeholder="Write something..."></textarea>
         </div>
+        <div id="stamps-zone" class="fabric-zone">
+          <ul>
+            <li class="stamp">
+              <img src="images/stamps/smiley.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/ROC.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/foxmosa.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/bill.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/cake.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/owl.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/mustache.png" />
+            </li>
+            <li class="stamp">
+              <img src="images/stamps/heart.png" />
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div id="collage-screen" class="page" data-page-no="2">
       collage page
@@ -69,27 +104,27 @@
     <div id="intro-footer">
     </div>
     <div id="edit-footer" class="footer" footer-page-no="1">
-      <ul>
+      <ul id="edit-intro">
         <li class="tappable">
-          <a id="crop_buttom">
+          <a id="crop_button">
             <i class="fa fa-crop button-fig"></i>
             <span class="button-title">Crop</span>
           </a>
         </li>
         <li class="tappable">
-          <a id="rotate_buttom">
+          <a id="rotate_button">
             <i class="fa fa-repeat button-fig"></i>
             <span class="button-title">Rotate</span>
           </a>
         </li>
         <li class="tappable">
-          <a>
+          <a id="text_button">
             <i class="fa fa-font button-fig"></i>
               <span class="button-title">Text</span>
           </a>
         </li>
         <li class="tappable">
-          <a id="effect_buttom">
+          <a id="effect_button">
             <i class="fa fa-magic button-fig"></i>
               <span class="button-title">Effect</span>
           </a>
@@ -101,7 +136,7 @@
           </a>
         </li>
         <li class="tappable">
-          <a>
+          <a id="stamps_button">
             <i class="fa fa-heart button-fig"></i>
               <span class="button-title">Stamps</span>
           </a>
@@ -113,32 +148,32 @@
 
       <ul id="edit-rotate">
         <li class="tappable">
-          <a class="rotateButtom">
+          <a class="rotateButton">
             <i class="fa fa-times button-fig"></i>
           </a>
         </li>
         <li id="rotate-left" class="tappable">
-          <a class="rotateButtom">
+          <a class="rotateButton">
             <i class="fa fa-rotate-left button-fig"></i>
           </a>
         </li>
         <li id="rotate-right" class="tappable">
-          <a class="rotateButtom">
+          <a class="rotateButton">
             <i class="fa fa-rotate-right button-fig"></i>
           </a>
         </li>
         <li id="flip-hoz" class="tappable">
-          <a class="rotateButtom">
+          <a class="rotateButton">
             <i class="fa fa-arrows-h button-fig"></i>
           </a>
         </li>
         <li id="flip-vtc" class="tappable">
-          <a class="rotateButtom">
+          <a class="rotateButton">
             <i class="fa fa-arrows-v button-fig"></i>
           </a>
         </li>
         <li class="tappable">
-          <a class="rotateButtom">
+          <a class="rotateButton">
             <i class="fa fa-check button-fig"></i>
           </a>
         </li>
@@ -146,40 +181,64 @@
 
       <ul id="edit-effect">
         <li class="tappable">
-          <a class="effectButtom">
+          <a class="effectButton">
             <i class="fa fa-times button-fig"></i>
           </a>
         </li>
         <div id="scrollBar">
           <li class="tappable">
-          <a class="rotateButtom">
-            <i class="fa fa-check button-fig"></i>
-          </a>
-        </li>
+            <a class="rotateButton">
+              <i class="fa fa-check button-fig"></i>
+            </a>
+          </li>
           <li class="tappable">
-          <a class="rotateButtom">
-            <i class="fa fa-check button-fig"></i>
-          </a>
-        </li>
-        <li class="tappable">
-          <a class="rotateButtom">
-            <i class="fa fa-check button-fig"></i>
-          </a>
-        </li>
-        <li class="tappable">
-          <a class="rotateButtom">
-            <i class="fa fa-check button-fig"></i>
-          </a>
-        </li>
-        <li class="tappable">
-          <a class="rotateButtom">
-            <i class="fa fa-check button-fig"></i>
-          </a>
-        </li>
+            <a class="rotateButton">
+              <i class="fa fa-check button-fig"></i>
+            </a>
+          </li>
+          <li class="tappable">
+            <a class="rotateButton">
+              <i class="fa fa-check button-fig"></i>
+            </a>
+          </li>
+          <li class="tappable">
+            <a class="rotateButton">
+              <i class="fa fa-check button-fig"></i>
+            </a>
+          </li>
+          <li class="tappable">
+            <a class="rotateButton">
+              <i class="fa fa-check button-fig"></i>
+            </a>
+          </li>
         </div>
         <li class="tappable">
-          <a class="effectButtom">
+          <a class="effectButton">
             <i class="fa fa-check button-fig"></i>
+          </a>
+        </li>
+      </ul>
+	  <ul id="edit-text">
+        <li class="tappable">
+          <a class="textButton">
+            <i class="fa fa-check button-fig"></i>
+          </a>
+        </li>
+        <li class="tappable">
+          <a class="textButton">
+            <i class="fa fa-times button-fig"></i>
+          </a>
+        </li>
+      </ul>
+      <ul id="edit-stamps">
+        <li class="tappable">
+          <a class="stampsButton">
+            <i class="fa fa-check button-fig"></i>
+          </a>
+        </li>
+        <li class="tappable">
+          <a class="stampsButton">
+            <i class="fa fa-times button-fig"></i>
           </a>
         </li>
       </ul>
@@ -193,7 +252,7 @@
   </div>
   <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
   <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-  <script type="text/javascript" src="js/fabric.js.all.min.js"></script>
+  <script type="text/javascript" src="js/fabric.min.js"></script>
   <script type="text/javascript" src="js/jquery.rotate.1-1.js"></script>
   <script type="text/javascript" src="js/caman.full.min.js"></script>
   <script type="text/javascript" src="js/foxcam.js"></script>
