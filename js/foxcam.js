@@ -1,4 +1,3 @@
-var editable = false;
 document.addEventListener('DOMComponentsLoaded', function(){
     //alert("loaded");
 });
@@ -7,8 +6,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
 
     var img_width = 0;
     var img_height = 0;
-    var high_res_canvas = document.createElement('canvas');
-    high_res_canvas.id = "high-canvas";
     var rotating = false;
     var bufferImage;
     var cw;
@@ -351,17 +348,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
     $("#save").click(function(e){
         $('#theimage').css('display','block');
     });
-    /*$("#effect_button").click(function(e){
-        e.preventDefault();
-        if(img_width <= 0) {
-            $("#edit-effect").css('display', 'none');
-            alert("Please pick up an image first");
-            return;
-        }else{
-            editable = true;
-            myEffect();
-        }
-    });*/
     
     $(".effects").click(function(e){
         e.preventDefault();
@@ -369,26 +355,66 @@ document.addEventListener('DOMComponentsLoaded', function(){
             alert("Please pick up an image first");
             return;
         }
-        var ef_id = $(this).attr("data-effect-id");
-        switch (ef_id){
-            case '1':
-                Caman("#preview-canvas", function (e) {
-                    this.greyscale();
-                    this.contrast(5).render();
-                    this.noise(3).render();
-                    this.sepia(100).render();
-                    this.channels({
-                        red: 8,
-                        blue: 2,
-                        green: 4
-                    }).render();;
-                    this.gamma(0.87).render();
-                    this.vignette("40%", 30).render();
-                });
-                alert('yoooo1');
-                break;
-            default:
-                break;
+        /*save tmp*/
+        var p_canvas = document.getElementById('theimage');
+        var retv_canvas = document.createElement('canvas');
+        retv_canvas.id = "retv_canvas";
+        retv_canvas.width = p_canvas.width;
+        retv_canvas.height = p_canvas.height;
+        var ctx = retv_canvas.getContext("2d", p_canvas.width, p_canvas.height);
+        ctx.drawImage(p_canvas, 0, 0);
+
+        myEffect(document.getElementById('theimage'), $(this).attr("data-effect-id"));
+
+        function myEffect(canvas, ef_id){
+            alert("shit");
+            switch (ef_id){
+                case '1':
+                    Caman("#theimage", function (e) {
+                        this.greyscale().render();
+                        this.contrast(5).render();
+                        this.noise(3).render();
+                        this.sepia(100).render();
+                        this.channels({
+                            red: 8,
+                            blue: 2,
+                            green: 4
+                        }).render();;
+                        this.gamma(0.87).render();
+                        this.vignette("40%", 30).render();
+                    });
+                    //alert('yoooo1');
+                    break;
+                case '2':
+                    /*Caman("#preview-canvas", function (e) {
+                        this.brightness(15).render();
+                        this.exposure(15).render();
+                        this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]).render();
+                        this.saturation(-20).render();
+                        this.gamma(1.8).render();
+                        this.vignette("50%", 60).render();
+                    });*/
+                    break;
+                case '3':
+                    break;
+                case '4':
+                    break;
+                case '5':
+                    break;
+                default:
+                    break;
+            }
         }
     });
+    $(".effect-setting").click(function(e){
+        e.preventDefault();
+        if($(this).attr("data-setting-check")=="true"){
+            alert("yoooo");
+            $("#edit-effect").css('display', 'none');
+        }else{
+            alert("shiiit");
+            $("#edit-effect").css('display', 'none');
+        }
+    });
+
 })();
