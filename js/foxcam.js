@@ -1,5 +1,5 @@
 document.addEventListener('DOMComponentsLoaded', function(){
-	//alert("loaded");
+    //alert("loaded");
 });
 
 (function () {
@@ -25,7 +25,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
             if(index == target-1)
                 $(this).css('left','0');
         });
-        $("#navigator").css('left','0');
+        $("div#head").css('left','0');
     });
     $(".fa-arrow-left").click(function(e){
         e.preventDefault();
@@ -33,35 +33,179 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $("#collage-screen").css('left','100%');
         $("#about-screen").css('left','100%');
         $("div.footer").css('left','100%');
-        $("#navigator").css('left','100%');
+        $("div#head").css('left','100%');
     });
-    $("#crop_buttom").click(function(e){
+    $("#crop_button").click(function(e){
         e.preventDefault();
         alert("You can do it when picking an image.");
     });
-    $("#rotate_buttom").click(function(e){
+    $("#rotate_button").click(function(e){
         e.preventDefault();
         $("#edit-intro").css('display','none');
         $("#edit-rotate").css('display','inline-block');
     });
-    $("#effect_buttom").click(function(e){
+    $("#effect_button").click(function(e){
         e.preventDefault();
         $("#edit-intro").css('display','none');
         $("#edit-effect").css('display','inline-block');
     });
-    $(".fa-check").click(function(e){
+    $("#stamps_button").click(function(e){
         e.preventDefault();
-        $("#edit-intro").css('display','inline-block');
-        //$("#edit-crop").css('display','none');
-        $("#edit-rotate").css('display','none');
-        $("#edit-effect").css('display','none');
+        if(img_width <= 0) {
+            alert("Please choose an image.");
+            $("i#choose-image").click();
+            return;
+        }
+        $("#edit-intro").css('display', 'none');
+        $("#edit-stamps").css('display', 'inline-block');
+        $("#stamps-zone").css('display', 'block');
+        $("#fabric-zone").css('display', 'block');
     });
-    $(".fa-times").click(function(e){
+	$("#text_button").click(function(e){
         e.preventDefault();
-        $("#edit-intro").css('display','inline-block');
-        //$("#edit-crop").css('display','none');
-        $("#edit-rotate").css('display','none');
-        $("#edit-effect").css('display','none');
+        if(img_width <= 0) {
+            alert("Please choose an image.");
+            $("i#choose-image").click();
+            return;
+        }
+        $("#edit-intro").css('display', 'none');
+        $("#navigator").css('display', 'none');
+		$("#text-zone").css('display', 'block');
+        $("#fabric-zone").css('display', 'block');
+        var input = document.getElementById("textInput");
+		input.focus();
+        input.value = "";
+    });
+    $("#textInput").keyup(function(e) {
+        if(e.keyCode === 13) {
+            e.target.blur();
+            $("#navigator").css('display', 'block');
+            $("#text-zone").css('display', 'none');
+            $("#edit-text").css('display', 'inline-block');
+            
+            var preCvs = document.getElementById('preview-canvas');
+            var canvas = new fabric.Canvas('playground');
+            canvas.setDimensions({ width: preCvs.width, height: preCvs.height });
+            canvas.setBackgroundImage(
+                preCvs.toDataURL(),
+                canvas.renderAll.bind(canvas), {
+                originX: 'left',
+                originY: 'top'
+            });
+            canvas.allowTouchScrolling = true;
+
+            var text = new fabric.Text(e.target.value||'What does the fox say?', {
+                fontSize: 20,
+                fontFamily: 'Impact',
+                fill: 'white',
+                shadow: 'black 0 0 5px',
+                stroke: 'rgba(0,0,0,.2)',
+                strokeWidth: 1
+            });
+            var ratio = 0.5*preCvs.width/text.getWidth();
+            text.scale(ratio);
+            canvas.add(text);
+            canvas.centerObject(text);
+            text.setCoords();
+            
+            var textHandler = function(e) {
+                e.preventDefault();
+                var data = document.getElementById('theimage');
+                data.onload = function() {
+                    var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
+                    ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
+                    canvas.clear();
+                    canvas.setDimensions({width: 0, height: 0});
+                    $(".textButton>.fa").unbind('click', textHandler);
+                };
+                if(e.target.className.match(/fa-check/g)) {
+                    var bench = document.createElement('canvas');
+                    bench.width = data.width;
+                    bench.height = data.height;
+                    var ctx = bench.getContext("2d", data.width, data.height);
+                    ctx.drawImage(data, 0, 0);
+                    
+                    var rw = data.width/preCvs.width;
+                    var rh = data.height/preCvs.height;
+                    var angle = text.getAngle();
+                    text.setFontSize(text.getFontSize()*rw);
+                    text.setLeft(text.getLeft()*rw);
+                    text.setTop(text.getTop()*rh);
+                    canvas.deactivateAll();
+                    text.render(ctx);
+                    data.src = bench.toDataURL();
+                }
+            };
+            $(".textButton>.fa").click(textHandler);
+        }
+    });
+    $(".fa-check, .fa-times").click(function(e){
+        e.preventDefault();
+        $("#edit-intro").css('display', 'inline-block');
+        //$("#edit-crop").css('display', 'none');
+        $("#edit-rotate").css('display', 'none');
+        $("#edit-effect").css('display', 'none');
+        $("#edit-stamps").css('display', 'none');
+        $("#stamps-zone").css('display', 'none');
+        $("#edit-text").css('display', 'none');
+        $("#text-zone").css('display', 'none');
+        $("#fabric-zone").css('display', 'none');
+    });
+    $("li.stamp").click(function(e) {
+        e.preventDefault();
+        $('#stamps-zone').css('display', 'none');
+        var preCvs = document.getElementById('preview-canvas');
+        var canvas = new fabric.Canvas('playground');
+        canvas.setDimensions({ width: preCvs.width, height: preCvs.height });
+        canvas.setBackgroundImage(
+            preCvs.toDataURL(),
+            canvas.renderAll.bind(canvas), {
+            originX: 'left',
+            originY: 'top'
+        });
+        canvas.allowTouchScrolling = true;
+
+        var stampURL = e.target.src.replace('.png', '.svg');
+        fabric.Image.fromURL(stampURL, function(img) {
+            var ratio = 0.4*preCvs.width/img.getWidth();
+            img.setWidth(img.getWidth()*ratio);
+            img.setHeight(img.getHeight()*ratio);
+            canvas.add(img);
+            canvas.centerObject(img);
+            img.setCoords();
+            var stamphandler = function(e) {
+                e.preventDefault();
+                var data = document.getElementById('theimage');
+                data.onload = function() {
+                    var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
+                    ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
+                    canvas.clear();
+                    canvas.setDimensions({width: 0, height: 0});
+                    $(".stampsButton>.fa").unbind('click', stamphandler);
+                };
+                if(e.target.className.match(/fa-check/g)) {
+                    var bench = document.createElement('canvas');
+                    bench.width = data.width;
+                    bench.height = data.height;
+                    var ctx = bench.getContext("2d", data.width, data.height);
+                    ctx.drawImage(data, 0, 0);
+                    
+                    var rw = data.width/preCvs.width
+                    var rh = data.height/preCvs.height;
+                    var stamp = new Image();
+                    stamp.src = stampURL;
+                    var width = img.getWidth()*rw;
+                    var height = img.getHeight()*rh;
+                    ctx.save();
+                    ctx.translate(img.getLeft()*rw, img.getTop()*rh);
+                    ctx.rotate(img.angle/180*Math.PI);
+                    ctx.drawImage(stamp, 0, 0, width, height);
+                    ctx.restore();
+                    data.src = bench.toDataURL();
+                }
+            };
+            $(".stampsButton>.fa").click(stamphandler);
+        });
     });
     $("i#choose-image").click(function(e){
         e.preventDefault();
