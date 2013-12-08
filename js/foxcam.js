@@ -47,6 +47,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $("#edit-intro").css('display','none');
         $("#edit-effect").css('display','inline-block');
         document.getElementById('theimage').style.display = 'block';
+        $("#theimage").before( "<p id='ori-text' style='color:white; padding:1em;'>Original:</p>" );
         //document.getElementById('theimage').style.opacity = '0';
     });
     $("#stamps_button").click(function(e){
@@ -351,13 +352,12 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $('#theimage').css('display','block');
     });
     
-    $(".effects").click(function(e){
+    $("a.effects").click(function(e){
         e.preventDefault();
         if(img_width <= 0){
             alert("Please pick up an image first");
             return;
         }
-        //document.getElementById('theimage').style.display = 'block';
         myEffect(this, $(this).attr("data-effect-id"));
         function myEffect(obj, ef_id){
             switch (ef_id){
@@ -374,37 +374,111 @@ document.addEventListener('DOMComponentsLoaded', function(){
                         }).render();;
                         this.gamma(0.87);
                         this.vignette("40%", 30);
-                        this.render();
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
                     });
                     break;
                 case '2':
-                    this.brightness(15);
-                    this.exposure(15);
-                    this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]);
-                    this.saturation(-20);
-                    this.gamma(1.8);
-                    this.vignette("50%", 60);
-                    this.brightness(5);
-                    this.render();
+                    Caman("#theimage", function (e) {
+                        this.brightness(15);
+                        this.exposure(15);
+                        this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]);
+                        this.saturation(-20);
+                        this.gamma(1.8);
+                        this.vignette("50%", 60);
+                        this.brightness(5);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
                     break;
                 case '3':
+                    Caman("#theimage", function (e) {
+                        this.exposure(3.5);
+                        this.saturation(-5);
+                        this.vibrance(50);
+                        this.sepia(60);
+                        this.colorize("#e87b22", 10);
+                        this.channels({
+                            red: 8,
+                            blue: 8
+                        });
+                        this.contrast(5);
+                        this.gamma(1.2);
+                        this.vignette("55%", 25);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
                     break;
                 case '4':
+                    Caman("#theimage", function (e) {
+                        this.gamma(1.5);
+                        this.clip(25);
+                        this.saturation(-60);
+                        this.contrast(5);
+                        this.noise(5);
+                        this.vignette("50%", 30);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
                     break;
                 case '5':
+                    Caman("#theimage", function (e) {
+                        this.saturation(-35);
+                        this.curves("b", [20, 0], [90, 120], [186, 144], [255, 230]);
+                        this.curves("r", [0, 0], [144, 90], [138, 120], [255, 255]);
+                        this.curves("g", [10, 0], [115, 105], [148, 100], [255, 248]);
+                        this.curves("rgb", [0, 0], [120, 100], [128, 140], [255, 255]);
+                        this.sharpen(20);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
                     break;
                 default:
-                    //effectSetting($(obj).attr("data-setting-check"));
+                    $('p#ori-text').remove();
+                    $('#edit-effect').css('display','none');
+                    if($(obj).attr('data-setting-check') == 'true'){
+                        alert('Good to go. \n :)');
+                    }else{
+                        alert("Sorry, it's under development. \n :P");
+                    }
+                    document.getElementById('theimage').style.display = 'none';
                     break;
             }
-            var canvas = document.getElementById('preview-canvas');
-            context = canvas.getContext('2d');
-            context.save();
-            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
-            context.restore();
-            document.getElementById('theimage').style.display = 'none';
-
-            return;
         }
     });
 })();
