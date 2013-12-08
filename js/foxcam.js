@@ -321,8 +321,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
             acontext.drawImage(bufferImage, 0, 0, img_width, img_height);
             acontext.restore();
             $('img#theimage')[0].parentNode.replaceChild(acanvas, $('img#theimage')[0]);
-            $('#theimage').css('display','none');
-            $('#theimage').css('display','block');
+            //$('#theimage').css('display','none');
+            //$('#theimage').css('display','block');
         }
         else{
             if(myFlip(canvas, this.id))
@@ -347,7 +347,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
         return true;
     }
 
-    $("#save").click(function(e){
+    $("#save").click(function(e){/*for debugging now*/
         $('#theimage').css('display','block');
     });
     
@@ -394,7 +394,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 case '5':
                     break;
                 default:
-                    effectSetting($(obj).attr("data-setting-check"));
+                    //effectSetting($(obj).attr("data-setting-check"));
                     break;
             }
             var canvas = document.getElementById('preview-canvas');
@@ -402,7 +402,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
             context.save();
             context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
             context.restore();
-            //alert("Done!");
             document.getElementById('theimage').style.display = 'none';
 
             return;
