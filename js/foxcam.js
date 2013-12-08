@@ -481,4 +481,10 @@ document.addEventListener('DOMComponentsLoaded', function(){
             }
         }
     });
+    
+    $('.under-dev').click(function(e){
+        e.preventDefault();
+        alert("Sorry, it's under development. \n :P");
+    })
+
 })();
