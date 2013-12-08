@@ -46,6 +46,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
         e.preventDefault();
         $("#edit-intro").css('display','none');
         $("#edit-effect").css('display','inline-block');
+        document.getElementById('theimage').style.display = 'block';
+        //document.getElementById('theimage').style.opacity = '0';
     });
     $("#stamps_button").click(function(e){
         e.preventDefault();
@@ -355,45 +357,35 @@ document.addEventListener('DOMComponentsLoaded', function(){
             alert("Please pick up an image first");
             return;
         }
-        /*save tmp*/
-        var p_canvas = document.getElementById('theimage');
-        var retv_canvas = document.createElement('canvas');
-        retv_canvas.id = "retv_canvas";
-        retv_canvas.width = p_canvas.width;
-        retv_canvas.height = p_canvas.height;
-        var ctx = retv_canvas.getContext("2d", p_canvas.width, p_canvas.height);
-        ctx.drawImage(p_canvas, 0, 0);
-
-        myEffect(document.getElementById('theimage'), $(this).attr("data-effect-id"));
-
-        function myEffect(canvas, ef_id){
-            alert("shit");
+        //document.getElementById('theimage').style.display = 'block';
+        myEffect(this, $(this).attr("data-effect-id"));
+        function myEffect(obj, ef_id){
             switch (ef_id){
                 case '1':
                     Caman("#theimage", function (e) {
-                        this.greyscale().render();
-                        this.contrast(5).render();
-                        this.noise(3).render();
-                        this.sepia(100).render();
+                        this.greyscale();
+                        this.contrast(5);
+                        this.noise(3);
+                        this.sepia(100);
                         this.channels({
                             red: 8,
                             blue: 2,
                             green: 4
                         }).render();;
-                        this.gamma(0.87).render();
-                        this.vignette("40%", 30).render();
+                        this.gamma(0.87);
+                        this.vignette("40%", 30);
+                        this.render();
                     });
-                    //alert('yoooo1');
                     break;
                 case '2':
-                    /*Caman("#preview-canvas", function (e) {
-                        this.brightness(15).render();
-                        this.exposure(15).render();
-                        this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]).render();
-                        this.saturation(-20).render();
-                        this.gamma(1.8).render();
-                        this.vignette("50%", 60).render();
-                    });*/
+                    this.brightness(15);
+                    this.exposure(15);
+                    this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]);
+                    this.saturation(-20);
+                    this.gamma(1.8);
+                    this.vignette("50%", 60);
+                    this.brightness(5);
+                    this.render();
                     break;
                 case '3':
                     break;
@@ -402,19 +394,18 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 case '5':
                     break;
                 default:
+                    effectSetting($(obj).attr("data-setting-check"));
                     break;
             }
-        }
-    });
-    $(".effect-setting").click(function(e){
-        e.preventDefault();
-        if($(this).attr("data-setting-check")=="true"){
-            alert("yoooo");
-            $("#edit-effect").css('display', 'none');
-        }else{
-            alert("shiiit");
-            $("#edit-effect").css('display', 'none');
-        }
-    });
+            var canvas = document.getElementById('preview-canvas');
+            context = canvas.getContext('2d');
+            context.save();
+            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+            context.restore();
+            //alert("Done!");
+            document.getElementById('theimage').style.display = 'none';
 
+            return;
+        }
+    });
 })();
