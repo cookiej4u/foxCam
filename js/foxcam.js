@@ -6,8 +6,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
 
     var img_width = 0;
     var img_height = 0;
-    var high_res_canvas = document.createElement('canvas');
-    high_res_canvas.id = "high-canvas";
     var rotating = false;
     var bufferImage;
     var cw;
@@ -37,7 +35,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
     });
     $("#crop_button").click(function(e){
         e.preventDefault();
-        alert("You can do it when picking an image.");
+        alert("You can do it when picking up an image.");
     });
     $("#rotate_button").click(function(e){
         e.preventDefault();
@@ -48,6 +46,9 @@ document.addEventListener('DOMComponentsLoaded', function(){
         e.preventDefault();
         $("#edit-intro").css('display','none');
         $("#edit-effect").css('display','inline-block');
+        document.getElementById('theimage').style.display = 'block';
+        $("#theimage").before( "<p id='ori-text' style='color:white; padding:1em;'>Original:</p>" );
+        //document.getElementById('theimage').style.opacity = '0';
     });
     $("#stamps_button").click(function(e){
         e.preventDefault();
@@ -69,17 +70,18 @@ document.addEventListener('DOMComponentsLoaded', function(){
             return;
         }
         $("#edit-intro").css('display', 'none');
-        $("#navigator").css('display', 'none');
+        $("#head>*").css('display', 'none');
 		$("#text-zone").css('display', 'block');
         $("#fabric-zone").css('display', 'block');
         var input = document.getElementById("textInput");
 		input.focus();
-        input.value = "";
+		input.value= "";
     });
-    $("#textInput").keyup(function(e) {
+    $("#textInput").keydown(function(e) {
+		e.preventDefault();
         if(e.keyCode === 13) {
             e.target.blur();
-            $("#navigator").css('display', 'block');
+            $("#head>*").css('display', 'block');
             $("#text-zone").css('display', 'none');
             $("#edit-text").css('display', 'inline-block');
             
@@ -93,7 +95,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 originY: 'top'
             });
             canvas.allowTouchScrolling = true;
-
+			
             var text = new fabric.Text(e.target.value||'What does the fox say?', {
                 fontSize: 20,
                 fontFamily: 'Impact',
@@ -107,16 +109,13 @@ document.addEventListener('DOMComponentsLoaded', function(){
             canvas.add(text);
             canvas.centerObject(text);
             text.setCoords();
-            
+			
             var textHandler = function(e) {
                 e.preventDefault();
                 var data = document.getElementById('theimage');
                 data.onload = function() {
                     var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
                     ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
-                    canvas.clear();
-                    canvas.setDimensions({width: 0, height: 0});
-                    $(".textButton>.fa").unbind('click', textHandler);
                 };
                 if(e.target.className.match(/fa-check/g)) {
                     var bench = document.createElement('canvas');
@@ -135,6 +134,9 @@ document.addEventListener('DOMComponentsLoaded', function(){
                     text.render(ctx);
                     data.src = bench.toDataURL();
                 }
+				canvas.clear();
+				canvas.setDimensions({width: 0, height: 0});
+				$(".textButton>.fa").unbind('click', textHandler);
             };
             $(".textButton>.fa").click(textHandler);
         }
@@ -144,7 +146,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $("#edit-intro").css('display', 'inline-block');
         //$("#edit-crop").css('display', 'none');
         $("#edit-rotate").css('display', 'none');
-        $("#edit-effect").css('display', 'none');
+        //$("#edit-effect").css('display', 'none');
         $("#edit-stamps").css('display', 'none');
         $("#stamps-zone").css('display', 'none');
         $("#edit-text").css('display', 'none');
@@ -179,9 +181,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 data.onload = function() {
                     var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
                     ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
-                    canvas.clear();
-                    canvas.setDimensions({width: 0, height: 0});
-                    $(".stampsButton>.fa").unbind('click', stamphandler);
                 };
                 if(e.target.className.match(/fa-check/g)) {
                     var bench = document.createElement('canvas');
@@ -203,6 +202,9 @@ document.addEventListener('DOMComponentsLoaded', function(){
                     ctx.restore();
                     data.src = bench.toDataURL();
                 }
+				canvas.clear();
+				canvas.setDimensions({width: 0, height: 0});
+				$(".stampsButton>.fa").unbind('click', stamphandler);
             };
             $(".stampsButton>.fa").click(stamphandler);
         });
@@ -321,8 +323,8 @@ document.addEventListener('DOMComponentsLoaded', function(){
             acontext.drawImage(bufferImage, 0, 0, img_width, img_height);
             acontext.restore();
             $('img#theimage')[0].parentNode.replaceChild(acanvas, $('img#theimage')[0]);
-            $('#theimage').css('display','none');
-            $('#theimage').css('display','block');
+            //$('#theimage').css('display','none');
+            //$('#theimage').css('display','block');
         }
         else{
             if(myFlip(canvas, this.id))
@@ -347,15 +349,143 @@ document.addEventListener('DOMComponentsLoaded', function(){
         return true;
     }
 
-    function setPixel(imageData, x, y, r, g, b, a) {
-        index = (x + y * imageData.width) * 4;
-        imageData.data[index+0] = r;
-        imageData.data[index+1] = g;
-        imageData.data[index+2] = b;
-        imageData.data[index+3] = a;
-    }
-
-    $("#save").click(function(e){
+    $("#save").click(function(e){/*for debugging now*/
         $('#theimage').css('display','block');
     });
+    
+    $("a.effects").click(function(e){
+        e.preventDefault();
+        if(img_width <= 0){
+            alert("Please pick up an image first");
+            return;
+        }
+        myEffect(this, $(this).attr("data-effect-id"));
+        function myEffect(obj, ef_id){
+            switch (ef_id){
+                case '1':
+                    Caman("#theimage", function (e) {
+                        this.greyscale();
+                        this.contrast(5);
+                        this.noise(3);
+                        this.sepia(100);
+                        this.channels({
+                            red: 8,
+                            blue: 2,
+                            green: 4
+                        }).render();;
+                        this.gamma(0.87);
+                        this.vignette("40%", 30);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
+                    break;
+                case '2':
+                    Caman("#theimage", function (e) {
+                        this.brightness(15);
+                        this.exposure(15);
+                        this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]);
+                        this.saturation(-20);
+                        this.gamma(1.8);
+                        this.vignette("50%", 60);
+                        this.brightness(5);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
+                    break;
+                case '3':
+                    Caman("#theimage", function (e) {
+                        this.exposure(3.5);
+                        this.saturation(-5);
+                        this.vibrance(50);
+                        this.sepia(60);
+                        this.colorize("#e87b22", 10);
+                        this.channels({
+                            red: 8,
+                            blue: 8
+                        });
+                        this.contrast(5);
+                        this.gamma(1.2);
+                        this.vignette("55%", 25);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
+                    break;
+                case '4':
+                    Caman("#theimage", function (e) {
+                        this.gamma(1.5);
+                        this.clip(25);
+                        this.saturation(-60);
+                        this.contrast(5);
+                        this.noise(5);
+                        this.vignette("50%", 30);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
+                    break;
+                case '5':
+                    Caman("#theimage", function (e) {
+                        this.saturation(-35);
+                        this.curves("b", [20, 0], [90, 120], [186, 144], [255, 230]);
+                        this.curves("r", [0, 0], [144, 90], [138, 120], [255, 255]);
+                        this.curves("g", [10, 0], [115, 105], [148, 100], [255, 248]);
+                        this.curves("rgb", [0, 0], [120, 100], [128, 140], [255, 255]);
+                        this.sharpen(20);
+                        this.render(function(){
+                            var canvas = document.getElementById('preview-canvas');
+                            var context = canvas.getContext("2d",canvas.width,canvas.height);
+                            context.save();
+                            context.clearRect (0,0,canvas.width,canvas.height);
+                            context.drawImage(document.getElementById('theimage'), 0, 0, canvas.width, canvas.height);
+                            context.restore();
+                            alert('done');
+                        });
+                    });
+                    break;
+                default:
+                    $('p#ori-text').remove();
+                    $('#edit-effect').css('display','none');
+                    if($(obj).attr('data-setting-check') == 'true'){
+                        alert('Good to go. \n :)');
+                    }else{
+                        alert("Sorry, it's under development. \n :P");
+                    }
+                    document.getElementById('theimage').style.display = 'none';
+                    break;
+            }
+        }
+    });
+    
+    $('.under-dev').click(function(e){
+        e.preventDefault();
+        alert("Sorry, it's under development. \n :P");
+    })
+
 })();

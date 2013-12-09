@@ -8,7 +8,6 @@
 </head>
 <body>
   <div id="head">
-    <x-appbar id="navigator">
       <div id="back">
         <li class="tappable">
           <a>
@@ -16,18 +15,11 @@
           </a>
         </li>
       </div>
-      <header>
-        <li class="tappable">
-          <a>
-            <i class="fa fa-reply button-fig"></i>
-          </a>
-        </li>
-        <li class="tappable">
-          <a>
-            <i class="fa fa-share button-fig"></i>
-          </a>
-        </li>
-      </header>
+      <!-- <div id="loading">
+            <a>
+              <i class="fa fa-spinner fa-spin"></i>
+            </a>
+      </div> -->
       <div id="save">
         <li class="tappable">
           <a>
@@ -38,7 +30,6 @@
         </li>
 
       </div>
-    </x-appbar>
   </div>
   <div>
     <div id="intro-screen" class="page">
@@ -93,10 +84,15 @@
       </div>
     </div>
     <div id="collage-screen" class="page" data-page-no="2">
-      collage page
+      <i id="collage-under-dev" class="fa fa-cog fa-spin"></i>
+      <p id="collage-under-dev-text">It's under development.</p>
     </div>
     <div id="about-screen" class="page" data-page-no="3">
-      about page
+      <img src="/images/logo03.png" width="200" height="200" ></img>
+      <h2>About this APP</h2>
+      <p>
+        Foxcam is the easiest way to editing, recreating and sharing photos. You can do even more by submitting new frames, icons and your unique designs. You'll not only become a photographer but also a camera function designing master with Foxcam.
+      </p>
     </div>
 
   </div> 
@@ -130,7 +126,7 @@
           </a>
         </li>
         <li class="tappable">
-          <a>
+          <a id="frame-button" class='under-dev'>
             <i class="fa fa-credit-card button-fig"></i>
               <span class="button-title">Frame</span>
           </a>
@@ -180,40 +176,47 @@
       </ul>
 
       <ul id="edit-effect">
-        <li class="tappable">
-          <a class="effectButton">
+        <li id="effect-cancel" class="tappable effect-setting">
+          <a class="effectButton effects" data-effect-id="0" data-setting-check="false">
             <i class="fa fa-times button-fig"></i>
           </a>
         </li>
-        <div id="scrollBar">
-          <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
-            </a>
-          </li>
-          <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
-            </a>
-          </li>
-          <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
-            </a>
-          </li>
-          <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
-            </a>
-          </li>
-          <li class="tappable">
-            <a class="rotateButton">
-              <i class="fa fa-check button-fig"></i>
-            </a>
-          </li>
-        </div>
-        <li class="tappable">
-          <a class="effectButton">
+        <li id="scroll-bar-wrapper">
+          <ul id="scrollBar">
+            <li class="tappable">
+              <a id="effect-1" class="rotateButton effects" data-effect-id="1">
+                <i class="fa fa-circle"></i>
+                <span class="button-title">Vintage</span>
+              </a>
+            </li>
+            <li class="tappable">
+              <a id="effect-2" class="rotateButton effects" data-effect-id="2">
+                <i class="fa fa-circle"></i>
+                <span class="button-title">Lomo</span>
+              </a>
+            </li>
+            <li class="tappable">
+              <a id="effect-3" class="rotateButton effects" data-effect-id="3">
+                <i class="fa fa-circle"></i>
+                <span class="button-title">Sunrise</span>
+              </a>
+            </li>
+            <li class="tappable">
+              <a id="effect-4" class="rotateButton effects" data-effect-id="4">
+                <i class="fa fa-circle"></i>
+                <span class="button-title">Grungy</span>
+              </a>
+            </li>
+            <li class="tappable">
+              <a id="effect-5" class="rotateButton effects" data-effect-id="5">
+                <i class="fa fa-circle"></i>
+                <span class="button-title">Jarques</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li id="effect-check" class="tappable effect-setting">
+          <a class="effectButton effects" data-effect-id="0" data-setting-check="true">
             <i class="fa fa-check button-fig"></i>
           </a>
         </li>
@@ -244,17 +247,17 @@
       </ul>
     </div>
     <div id="collage-footer" class="footer" footer-page-no="2">
-        collage-footer
     </div>
     <div id="about-footer" class="footer" footer-page-no="3">
-        about-footer
     </div>
   </div>
+  <script type="text/javascript" src="js/base.js"></script>
   <script type="text/javascript" src="js/brick-0.9.1.byob.min.js"></script>
   <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
   <script type="text/javascript" src="js/fabric.min.js"></script>
   <script type="text/javascript" src="js/jquery.rotate.1-1.js"></script>
   <script type="text/javascript" src="js/caman.full.min.js"></script>
   <script type="text/javascript" src="js/foxcam.js"></script>
+  <script type="text/javascript" src="js/saveImage.js"></script>
 </body>
 </html>

@@ -52,6 +52,7 @@ div#text-zone>textarea {
   height: 100%;
   color: white;
   font-size: xx-large;
+  border: 0;
   background-color: rgb(0,0,0);
 }
 div#stamps-zone {
@@ -122,15 +123,10 @@ li.stamp>img {
   display: none;
   position: absolute;
   bottom: 0;
-}
-#scrollBar{ 
-  height: 50px;
-  width: 200px;
-  margin-bottom: -27px;
-  background: black;
   white-space: nowrap;
-  overflow: scroll;
-  display: inline-block;
+}
+#edit-effect .fa-circle{
+  color:#484848;
 }
 #edit-stamps, #edit-text {
   display: none;
@@ -140,4 +136,37 @@ li.stamp>img {
 #edit-stamps>li, #edit-text>li {
   width: 9%;
   margin: 0 20%;
+}
+#edit-effect li{
+  display: inline-block;
+}
+li#effect-cancel{
+  float:left;
+}
+li#scroll-bar-wrapper{
+  float:left;
+}
+ul#scrollBar{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  height: 100%;
+  width: 200px;
+  background: black;
+  white-space: nowrap;
+  overflow: scroll;
+  overflow-y:hidden;
+}
+li#effect-check{
+  float: right;
+}
+#scrollBar li a{
+  height: 100%;
+  display: inline-block;
+}
+#scrollBar li a i{
+  height: 100%;
+  line-height: 100%;
+  font-size: 100%;
+  font-size: 40px;
 }
