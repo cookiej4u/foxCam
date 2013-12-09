@@ -61,7 +61,7 @@ header{
     width:100%;
     bottom:0%;
     background-color:rgba(0,0,0,100);
-    height:10%
+    height:15%
 }
 
 #slider {
@@ -101,12 +101,24 @@ div#edit-screen{
   background: black;
 }
 div#collage-screen{
-  background: yellow;
+  background: black;
+  color:#ffffff;
+  text-align: center;
+  padding-top: 45%;
+}
+div#collage-screen i{
+  margin: 0 auto;
 }
 div#about-screen{
-  background: white;
+  background: black;
+  color:#ffffff;
+  text-align: center;
+  overflow-y: scroll;
 }
-
+div#about-screen p, div#about-screen h2{
+  margin: 1.5em;
+  line-height: 1.5em;
+}
 /*Common attributes of navigator and toolbar*/
 #navigator {
   position: absolute;
@@ -135,10 +147,10 @@ div#edit-footer {
   background-color: black;
 }
 div#collage-footer {
-  background-color: pink;
+  background-color: black;
 }
 div#about-footer {
-  background-color: green;
+  background-color: black;
 }
 
 div.footer>ul {
@@ -183,4 +195,17 @@ span.button-title {
   transform: translate(-50%, -50%);
   margin: 0px auto;
 }
-
+i#collage-under-dev{
+  margin: 0 auto;
+  margin-top: 40%;
+  color: #eee;
+  font-size:3em;
+}
+p#collage-under-dev-text{
+  margin: 1em;
+  font-size: 18px !important;
+  display: block;
+}
+#edit-intro{
+  height: 100%;
+}

@@ -35,7 +35,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
     });
     $("#crop_button").click(function(e){
         e.preventDefault();
-        alert("You can do it when picking an image.");
+        alert("You can do it when picking up an image.");
     });
     $("#rotate_button").click(function(e){
         e.preventDefault();
