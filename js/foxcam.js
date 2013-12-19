@@ -1,3 +1,4 @@
+"use strict";
 document.addEventListener('DOMComponentsLoaded', function(){
     //alert("loaded");
 });
@@ -62,7 +63,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
         $("#stamps-zone").css('display', 'block');
         $("#fabric-zone").css('display', 'block');
     });
-	$("#text_button").click(function(e){
+    $("#text_button").click(function(e){
         e.preventDefault();
         if(img_width <= 0) {
             alert("Please choose an image.");
@@ -70,75 +71,67 @@ document.addEventListener('DOMComponentsLoaded', function(){
             return;
         }
         $("#edit-intro").css('display', 'none');
-        $("#navigator").css('display', 'none');
-		$("#text-zone").css('display', 'block');
+        $("#head>*").css('display', 'none');
+        $("#text-zone").css('display', 'block');
         $("#fabric-zone").css('display', 'block');
         var input = document.getElementById("textInput");
-		input.focus();
+        input.focus();
         input.value = "";
     });
-    $("#textInput").keyup(function(e) {
-        if(e.keyCode === 13) {
-            e.target.blur();
-            $("#navigator").css('display', 'block');
-            $("#text-zone").css('display', 'none');
-            $("#edit-text").css('display', 'inline-block');
-            
-            var preCvs = document.getElementById('preview-canvas');
-            var canvas = new fabric.Canvas('playground');
-            canvas.setDimensions({ width: preCvs.width, height: preCvs.height });
-            canvas.setBackgroundImage(
-                preCvs.toDataURL(),
-                canvas.renderAll.bind(canvas), {
-                originX: 'left',
-                originY: 'top'
-            });
-            canvas.allowTouchScrolling = true;
-
-            var text = new fabric.Text(e.target.value||'What does the fox say?', {
-                fontSize: 20,
-                fontFamily: 'Impact',
-                fill: 'white',
-                shadow: 'black 0 0 5px',
-                stroke: 'rgba(0,0,0,.2)',
-                strokeWidth: 1
-            });
-            var ratio = 0.5*preCvs.width/text.getWidth();
-            text.scale(ratio);
-            canvas.add(text);
-            canvas.centerObject(text);
-            text.setCoords();
-            
-            var textHandler = function(e) {
-                e.preventDefault();
-                var data = document.getElementById('theimage');
-                data.onload = function() {
-                    var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
-                    ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
-                    canvas.clear();
-                    canvas.setDimensions({width: 0, height: 0});
-                    $(".textButton>.fa").unbind('click', textHandler);
-                };
-                if(e.target.className.match(/fa-check/g)) {
-                    var bench = document.createElement('canvas');
-                    bench.width = data.width;
-                    bench.height = data.height;
-                    var ctx = bench.getContext("2d", data.width, data.height);
-                    ctx.drawImage(data, 0, 0);
+    $("#textInput").keydown(function(e) {
+        e.preventDefault();
+        if(e.keyCode !== 13) { return; } //proceed if enter hit
+        e.target.blur();
+        $("#head>*").css('display', 'block');
+        $("#text-zone").css('display', 'none');
+        $("#edit-text").css('display', 'inline-block');
+        
+        var preCvs = document.getElementById('preview-canvas');
+        var canvas = new fabric.Canvas('playground');
+        canvas.setDimensions({ width: preCvs.width, height: preCvs.height });
+        canvas.setBackgroundImage(
+            preCvs.toDataURL(),
+            canvas.renderAll.bind(canvas), {
+            originX: 'left',
+            originY: 'top'
+        });
+        canvas.allowTouchScrolling = true;
                     
-                    var rw = data.width/preCvs.width;
-                    var rh = data.height/preCvs.height;
-                    var angle = text.getAngle();
-                    text.setFontSize(text.getFontSize()*rw);
-                    text.setLeft(text.getLeft()*rw);
-                    text.setTop(text.getTop()*rh);
-                    canvas.deactivateAll();
-                    text.render(ctx);
-                    data.src = bench.toDataURL();
-                }
-            };
-            $(".textButton>.fa").click(textHandler);
-        }
+        var text = new fabric.Text(e.target.value||'What does the fox say?', {
+            fontSize: 20,
+            fontFamily: 'Impact',
+            fill: 'rgba(255,255,255,1)',
+            shadow: 'black 0 0 10px',
+            strokeWidth: 1,
+            centeredScaling: true,
+            cornerSize: 20
+        });
+        var ratio = 0.5*preCvs.width/text.getWidth();
+        text.scale(ratio);
+        canvas.add(text);
+        canvas.centerObject(text);
+        text.setCoords();
+        canvas.renderAll();
+                    
+        var textHandler = function(e) {
+            e.preventDefault();
+            var data = document.getElementById('theimage');
+            if(e.target.className.match(/fa-check/g)) {
+                var rw = data.width/preCvs.width;
+                var rh = data.height/preCvs.height;
+                text.setFontSize(text.getFontSize()*rw);
+                text.setLeft(text.getLeft()*rw);
+                text.setTop(text.getTop()*rh);
+                canvas.deactivateAll();
+                text.render(data.getContext("2d", data.width, data.height));
+                var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
+                ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
+            }
+            canvas.clear();
+            canvas.setDimensions({width: 0, height: 0});
+            $(".textButton>.fa").unbind('click', textHandler);
+        };
+        $(".textButton>.fa").click(textHandler);
     });
     $(".fa-check, .fa-times").click(function(e){
         e.preventDefault();
@@ -165,45 +158,35 @@ document.addEventListener('DOMComponentsLoaded', function(){
             originY: 'top'
         });
         canvas.allowTouchScrolling = true;
-
         var stampURL = e.target.src.replace('.png', '.svg');
         fabric.Image.fromURL(stampURL, function(img) {
             var ratio = 0.4*preCvs.width/img.getWidth();
             img.setWidth(img.getWidth()*ratio);
             img.setHeight(img.getHeight()*ratio);
+            img.cornerSize = 20;
+            img.centeredScaling = true;
             canvas.add(img);
             canvas.centerObject(img);
             img.setCoords();
+            canvas.renderAll();
             var stamphandler = function(e) {
                 e.preventDefault();
                 var data = document.getElementById('theimage');
-                data.onload = function() {
-                    var ctx = preCvs.getContext("2d", preCvs.width, preCvs.height);
-                    ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
-                    canvas.clear();
-                    canvas.setDimensions({width: 0, height: 0});
-                    $(".stampsButton>.fa").unbind('click', stamphandler);
-                };
                 if(e.target.className.match(/fa-check/g)) {
-                    var bench = document.createElement('canvas');
-                    bench.width = data.width;
-                    bench.height = data.height;
-                    var ctx = bench.getContext("2d", data.width, data.height);
-                    ctx.drawImage(data, 0, 0);
-                    
                     var rw = data.width/preCvs.width
                     var rh = data.height/preCvs.height;
-                    var stamp = new Image();
-                    stamp.src = stampURL;
-                    var width = img.getWidth()*rw;
-                    var height = img.getHeight()*rh;
-                    ctx.save();
-                    ctx.translate(img.getLeft()*rw, img.getTop()*rh);
-                    ctx.rotate(img.angle/180*Math.PI);
-                    ctx.drawImage(stamp, 0, 0, width, height);
-                    ctx.restore();
-                    data.src = bench.toDataURL();
+                    img.setScaleX(img.getScaleX()*rw);
+                    img.setScaleY(img.getScaleY()*rh);
+                    img.setLeft(img.getLeft()*rw);
+                    img.setTop(img.getTop()*rh);
+                    canvas.deactivateAll();
+                    img.render(data.getContext("2d"));
+                    var ctx = preCvs.getContext("2d");
+                    ctx.drawImage(data, 0, 0, preCvs.width, preCvs.height);
                 }
+                canvas.clear();
+                canvas.setDimensions({width: 0, height: 0});
+                $(".stampsButton>.fa").unbind('click', stamphandler);
             };
             $(".stampsButton>.fa").click(stamphandler);
         });
@@ -219,18 +202,22 @@ document.addEventListener('DOMComponentsLoaded', function(){
         });
         pick.onsuccess = function () { 
             var img = new Image;
+            var data = document.createElement('canvas');
             img.src = URL.createObjectURL(this.result.blob);
             img.onload = function() {
                 //alert("yeaaaa");
                 img_width = img.width;
                 img_height = img.height;
-                img.id = 'theimage';
-                img.style.display = 'none';
                 bufferImage = new Image();
                 bufferImage.id = 'bufferImage';
                 bufferImage.src = img.src;
                 bufferImage.width = img.width;
                 bufferImage.height = img.height;
+                data.id = 'theimage';
+                data.style.display = 'none';
+                data.width = img.width;
+                data.height = img.height;
+                data.getContext('2d').drawImage(img, 0, 0);
 
                 var canvas = document.createElement('canvas'),
                 canvas_wrapper = document.getElementById('image-canvas-wrapper');
@@ -248,7 +235,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                     canvas.height = canvas_max_width;
                 }
                 canvas_wrapper.appendChild(canvas);
-                canvas_wrapper.appendChild(img);
+                canvas_wrapper.appendChild(data);
                 var context = canvas.getContext("2d");
                 context.drawImage(img,0,0, canvas.width, canvas.height);
                 //$('#theimage').rotateRight(0);
@@ -283,21 +270,28 @@ document.addEventListener('DOMComponentsLoaded', function(){
     });
 
     function myRotate(canvas, rw, rh, rol){
-        if(rol == true){
-            $('#theimage').rotateRight();
-            $('#theimage').css('display','none');
-        }else{
-            $('#theimage').rotateLeft();
-            $('#theimage').css('display','none');
-        }
+        var data = document.getElementById('theimage');
+        var newData = document.createElement('canvas');
+        var rotation = rol?Math.PI/2:-Math.PI/2;
+        img_height = newData.height = data.width;
+        img_width = newData.width = data.height;
+        newData.style.display = 'none';
+        newData.id = 'theimage';
+        var ctx = newData.getContext('2d', data.width, data.height);
+        ctx.save();
+        ctx.translate(rol?data.height:0, rol?0:data.width);
+        ctx.rotate(rotation);
+        ctx.drawImage(data, 0, 0);
+        ctx.restore();
+        data.parentNode.replaceChild(newData, data);
+        
         var context = canvas.getContext("2d",canvas.width,canvas.height);
         canvas.width = rw;
         canvas.height = rh;
         context.save();
         context.clearRect (0,0,canvas.width,canvas.height);
-        context.drawImage(document.getElementById('theimage'), 0, 0, rw,rh);
+        context.drawImage(newData, 0, 0, rw,rh);
         context.restore();
-        
     }
 
     $("#flip-hoz, #flip-vtc").click(function(e){
