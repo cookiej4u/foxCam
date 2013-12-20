@@ -120,6 +120,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
                 var rw = data.width/preCvs.width;
                 var rh = data.height/preCvs.height;
                 text.setFontSize(text.getFontSize()*rw);
+				text.shadow.blur = text.shadow.blur*rw;
                 text.setLeft(text.getLeft()*rw);
                 text.setTop(text.getTop()*rh);
                 canvas.deactivateAll();
@@ -158,7 +159,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
             originY: 'top'
         });
         canvas.allowTouchScrolling = true;
-        var stampURL = e.target.src.replace('.png', '.svg');
+		var stampURL = this.firstElementChild.src.replace('.png', '.svg');
         fabric.Image.fromURL(stampURL, function(img) {
             var ratio = 0.4*preCvs.width/img.getWidth();
             img.setWidth(img.getWidth()*ratio);
