@@ -1,6 +1,5 @@
 /* import framework core */
 @import url("../yaml/core/base.min.css");
-@import url("brick-0.9.1.byob.min.css");
 @import url("../fonts/font-awesome/css/font-awesome.min.css");
 
 /*navigator and toolbar on Edit page*/
@@ -49,11 +48,6 @@ header{
 .font{
     font-size:1.5em;
     margin-top:10px;
-}
-
-#appbar{
-    background:rgba(0,0,0,100);
-    height:10%;
 }
 
 #footer {
@@ -120,25 +114,6 @@ div#about-screen p, div#about-screen h2{
   line-height: 1.5em;
 }
 /*Common attributes of navigator and toolbar*/
-#navigator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-image: none;
-  height: 10%;
-  z-index: 1;
-}
-#navigator>header {
-  text-align: center;
-}
-div#back{
-  /*
-  It seems the appbar brick sets this by default.
-  padding-left: 10px;
-  */
-}
-
 div#save {
   padding-right: 10px;
 }
